@@ -13,7 +13,7 @@ const items = [
   { href: "/documentation", label: "Documentation" },
   { href: "/interpreter", label: "Interpreter" },
   { href: "/publications", label: "Publications" },
-  { href: "/collaborator", label: "Collaborator" },
+  { href: "/collaborators", label: "Collaborator" },
   
 ];
 
