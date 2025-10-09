@@ -3,7 +3,7 @@ import { CollaboratorCard } from "@/components/shared/collaboratorcard";
 
 const people = [
   { name: "Shriya Thakur", initials: "ST", location: "London, United Kingdom", country: "UK" },
-  { name: "Adriano II", initials: "AI", location: "London, United Kingdom", country: "UK" },
+  // { name: "Adriano II", initials: "AI", location: "London, United Kingdom", country: "UK" },
   { name: "Paul D", initials: "PD", location: "London, United Kingdom", country: "UK" },
   { name: "Cody Fisher", initials: "CF", location: "London, United Kingdom", country: "UK" },
 ];

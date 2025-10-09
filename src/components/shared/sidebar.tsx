@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 const items = [
   { href: "/", label: "Overview" },
   { href: "/documentation", label: "Documentation" },
-  { href: "/interpreter", label: "Interpreter" },
+  { href: "/playground", label: "Playground" },
   { href: "/publications", label: "Publications" },
   { href: "/collaborators", label: "Collaborator" },
   
