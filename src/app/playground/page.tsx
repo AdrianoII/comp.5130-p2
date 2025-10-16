@@ -1,13 +1,50 @@
 "use client"
 import Editor, { DiffEditor, useMonaco, loader } from '@monaco-editor/react';
 import { PlayIcon, ScrollIcon } from "lucide-react"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { WASI } from "@runno/wasi";
 
 export default function Playground() {
 
     const [input, setInput] = useState("")
+    useEffect(() => {
+        let maybeElem = document.querySelector("#div");
+        if (maybeElem) {
+            console.log(maybeElem.innerHTML)
+        } else {
+            console.log(maybeElem)
+        }
+    }, []);
+
+
+
+    useEffect(() => {
+
+        //...
+
+        const result = WASI.start(fetch("/hello.wasm"), {
+            // args: ["binary-name", "--do-something", "some-file.txt"],
+            args: [],
+            env: {},
+            stdout: (out) => console.log("stdout", out),
+            stderr: (err) => console.error("stderr", err),
+            stdin: () => prompt("stdin:"),
+            fs: {
+                "/some-file.txt": {
+                    path: "/some-file.txt",
+                    timestamps: {
+                        access: new Date(),
+                        change: new Date(),
+                        modification: new Date(),
+                    },
+                    mode: "string",
+                    content: "Some content for the file.",
+                },
+            },
+        });
+    }, [])
 
     return (
         <section className="mx-auto max-w-5xl p-6 space-y-4">
