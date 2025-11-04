@@ -8,6 +8,6 @@ import { twMerge } from "tailwind-merge";
  * Example:
  * cn("p-2", isActive && "bg-gray-100")
  */
-export function cn(...inputs: any[]) {
-  return twMerge(clsx(inputs));
-}
+// export function cn(...inputs: any[]) {
+//   return twMerge(clsx(inputs));
+// }

@@ -10,7 +10,7 @@ export default function Playground() {
 
     const [input, setInput] = useState("")
     useEffect(() => {
-        let maybeElem = document.querySelector("#div");
+        const maybeElem = document.querySelector("#div");
         if (maybeElem) {
             console.log(maybeElem.innerHTML)
         } else {

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { cn } from "@/lib/cn";
+import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 
 const items = [
