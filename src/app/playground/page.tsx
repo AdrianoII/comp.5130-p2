@@ -5,9 +5,12 @@ import { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { WASI } from "@runno/wasi";
+import ExampleSelector from "@/components/shared/exampleselector";
 
 export default function Playground() {
 
+  
+ 
     const [input, setInput] = useState("")
     useEffect(() => {
         const maybeElem = document.querySelector("#div");
@@ -48,6 +51,20 @@ export default function Playground() {
 
     return (
         <section className="mx-auto max-w-5xl p-6 space-y-4">
+        
+
+            <div className="flex flex-col items-center text-center">
+                <h1 className="text-2xl font-semibold mb-2">
+                    Select a coding example
+                </h1>
+                <div className="w-full max-w-md flex justify-center mt-2">
+                    <ExampleSelector />
+                </div>
+            </div>
+
+
+  
+
             <h1 className="text-2xl font-semibold">Playground</h1>
 
             <div>
