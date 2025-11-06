@@ -7,30 +7,21 @@ First, run the development server:
 ```bash
 npm run dev
 # or
-yarn dev
-# or
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The production URL of this project is: [https://comp-5130-p2.vercel.app/](https://comp-5130-p2.vercel.app/).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Milestone 5: Database schema, initial database implementation
 
-## Learn More
+The [ER](artifacts/er.png) diagram represents a simple system with two main entities, Users and Examples: where both of these entities are internally connected by a one-to-many relationship. 
+ 
+Users Table: Each record in this table represents a user registered on the system. Each user will have an id, an email for login, a hashed password for authentication, and a role either for admin or user. The created_at field records when the account was created.
 
-To learn more about Next.js, take a look at the following resources:
+Examples Table: At this table, code examples will be created by users. Every example will have its own id, title, a block of code, and timestamps for creation and last updates. The user_id field links each example with who has created it.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The database schema is in [schema.sql](schema.sql).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The feature that interacts with the database is on the [playground](https://comp-5130-p2.vercel.app/playground) page. The example select input fetches the examples from the database and displays the respective selected example's code in the code editor.
