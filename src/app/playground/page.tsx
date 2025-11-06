@@ -55,7 +55,7 @@ export default function Playground() {
                     Select a code example
                 </h1>
                 <div className="w-full max-w-md flex justify-center mt-2">
-                    <ExampleSelector onChange={(v: string) => console.log(`hi, i am ${v}`)} />
+                    <ExampleSelector onChange={(v: string) => setInput} />
                 </div>
             </div>
 
@@ -71,7 +71,6 @@ export default function Playground() {
                     defaultLanguage="haskell"
                     defaultValue={input}
                     onChange={(v, e) => setInput(v === undefined ? "" : v)}
-
                 />
             </div>
 
