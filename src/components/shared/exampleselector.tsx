@@ -11,7 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-interface CodeSnippetData {
+interface Example {
   id: number;
   user_id: number;
   title: string;
@@ -22,7 +22,7 @@ interface CodeSnippetData {
 
 
 export default function ExampleSelector({ onChange }: { onChange: (v: string) => void }) {
-  const [examples, setExamples] = useState([]);
+  const [examples, setExamples] = useState([] as unknown as [Example]);
   const [selectedExample, setSelectedExample] = useState("");
   useEffect(() => {
     // TODO: Maybe we should add the API_URL as an env var 
@@ -36,7 +36,13 @@ export default function ExampleSelector({ onChange }: { onChange: (v: string) =>
     <div className="w-80">
       <Select onValueChange={(v) => {
         // console.log(onChange);
-        onChange(v);
+        const ex = examples.find(ex => ex.id.toString() === v); 
+        // console.log(`ex=${ex.code}`);
+        if (ex){
+          onChange(ex.code);
+        } else {
+          console.error("invalid id")
+        }
         setSelectedExample(v);
       }}>
         <SelectTrigger className="w-full">
@@ -46,18 +52,18 @@ export default function ExampleSelector({ onChange }: { onChange: (v: string) =>
         <SelectContent>
           <SelectGroup>
             <SelectLabel>Coding Examples</SelectLabel>
-            {examples.map((ex: CodeSnippetData) =>
+            {examples.map((ex: Example) =>
               <SelectItem key={ex.id} value={ex.id.toString()}>{ex.title}</SelectItem>
             )}
           </SelectGroup>
         </SelectContent>
       </Select>
 
-      {selectedExample && (
+      {/* {selectedExample && (
         <p className="mt-3 text-sm text-gray-600">
           Selected: <span className="font-medium text-gray-900">{selectedExample}</span>
         </p>
-      )}
+      )} */}
     </div>
   );
 }

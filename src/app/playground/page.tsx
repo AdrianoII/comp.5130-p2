@@ -1,14 +1,27 @@
 "use client"
-import Editor, { DiffEditor, useMonaco, loader } from '@monaco-editor/react';
+import Editor, { DiffEditor, useMonaco, loader, OnMount, Monaco } from '@monaco-editor/react';
 import { PlayIcon, ScrollIcon } from "lucide-react"
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { WASI } from "@runno/wasi";
 import ExampleSelector from "@/components/shared/exampleselector";
+import { editor } from 'monaco-editor';
 
 export default function Playground() {
+    const editorRef = useRef<editor.IStandaloneCodeEditor>(null);
     const [input, setInput] = useState("")
+
+    function handleEditorDidMount(editor: editor.IStandaloneCodeEditor, monaco: Monaco): void {
+        editorRef.current = editor;
+    };
+
+    function setEditorValue(v: string) {
+        if (editorRef.current) {
+            editorRef.current.setValue(v)
+        }
+    }
+
     useEffect(() => {
         const maybeElem = document.querySelector("#div");
         if (maybeElem) {
@@ -48,19 +61,22 @@ export default function Playground() {
 
     return (
         <section className="mx-auto max-w-5xl p-6 space-y-4">
-        
+
 
             <div className="flex flex-col items-center text-center">
                 <h1 className="text-2xl font-semibold mb-2">
                     Select a code example
                 </h1>
                 <div className="w-full max-w-md flex justify-center mt-2">
-                    <ExampleSelector onChange={(v: string) => setInput} />
+                    <ExampleSelector onChange={(v: string) => {
+                        setInput(v)
+                        setEditorValue(v);
+                    }} />
                 </div>
             </div>
 
 
-  
+
 
             <h1 className="text-2xl font-semibold">Playground</h1>
 
@@ -71,6 +87,7 @@ export default function Playground() {
                     defaultLanguage="haskell"
                     defaultValue={input}
                     onChange={(v, e) => setInput(v === undefined ? "" : v)}
+                    onMount={handleEditorDidMount}
                 />
             </div>
 
