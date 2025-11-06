@@ -6,7 +6,7 @@ export async function getData() {
     const sql = neon(process.env.DATABASE_URL as string);
     const data = await sql`SELECT * FROM examples;`;
     console.log(data);
-    return data.toString();
+    return data;
 }
 
 export async function GET(request: Request) {
