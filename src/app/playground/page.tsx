@@ -8,9 +8,6 @@ import { WASI } from "@runno/wasi";
 import ExampleSelector from "@/components/shared/exampleselector";
 
 export default function Playground() {
-
-  
- 
     const [input, setInput] = useState("")
     useEffect(() => {
         const maybeElem = document.querySelector("#div");
@@ -55,10 +52,10 @@ export default function Playground() {
 
             <div className="flex flex-col items-center text-center">
                 <h1 className="text-2xl font-semibold mb-2">
-                    Select a coding example
+                    Select a code example
                 </h1>
                 <div className="w-full max-w-md flex justify-center mt-2">
-                    <ExampleSelector />
+                    <ExampleSelector onChange={(v: string) => console.log(`hi, i am ${v}`)} />
                 </div>
             </div>
 

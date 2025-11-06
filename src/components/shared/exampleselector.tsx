@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Select,
   SelectContent,
@@ -11,12 +11,34 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export default function ExampleSelector() {
-  const [selectedExample, setSelectedExample] = useState("");
+interface CodeSnippetData {
+  id: number;
+  user_id: number;
+  title: string;
+  code: string;
+  created_at: string; // Keep as string if just storing the value from JSON
+  updated_at: string;
+}
 
+
+export default function ExampleSelector({ onChange }: { onChange: (v: string) => void }) {
+  const [examples, setExamples] = useState([]);
+  const [selectedExample, setSelectedExample] = useState("");
+  useEffect(() => {
+    // TODO: Maybe we should add the API_URL as an env var 
+    const fetch_data = async () => {
+      const data = await fetch("https://comp-5130-p2.vercel.app/api/examples")
+      setExamples(await data.json());
+    };
+    const data = fetch_data();
+  }, []);
   return (
     <div className="w-80">
-      <Select onValueChange={setSelectedExample}>
+      <Select onValueChange={(v) => {
+        // console.log(onChange);
+        onChange(v);
+        setSelectedExample(v);
+      }}>
         <SelectTrigger className="w-full">
           <SelectValue placeholder="Choose a coding example" />
         </SelectTrigger>
@@ -24,11 +46,9 @@ export default function ExampleSelector() {
         <SelectContent>
           <SelectGroup>
             <SelectLabel>Coding Examples</SelectLabel>
-            <SelectItem value="loops">Loops and Iterations</SelectItem>
-            <SelectItem value="recursion">Recursion</SelectItem>
-            <SelectItem value="sorting">Sorting Algorithms</SelectItem>
-            <SelectItem value="searching">Searching Algorithms</SelectItem>
-            <SelectItem value="data-structures">Data Structures</SelectItem>
+            {examples.map((ex: CodeSnippetData) =>
+              <SelectItem key={ex.id} value={ex.id.toString()}>{ex.title}</SelectItem>
+            )}
           </SelectGroup>
         </SelectContent>
       </Select>
