@@ -34,9 +34,6 @@ export default function Playground() {
 
 
     useEffect(() => {
-
-        //...
-
         const result = WASI.start(fetch("/hello.wasm"), {
             // args: ["binary-name", "--do-something", "some-file.txt"],
             args: [],
@@ -61,8 +58,6 @@ export default function Playground() {
 
     return (
         <section className="mx-auto max-w-5xl p-6 space-y-4">
-
-
             <div className="flex flex-col items-center text-center">
                 <h1 className="text-2xl font-semibold mb-2">
                     Select a code example
@@ -74,12 +69,7 @@ export default function Playground() {
                     }} />
                 </div>
             </div>
-
-
-
-
             <h1 className="text-2xl font-semibold">Playground</h1>
-
             <div>
                 <Editor
                     height="50vh"
@@ -93,14 +83,14 @@ export default function Playground() {
 
             <div className='w-full flex flex-row content-center justify-center items-center gap-16'>
                 <Button
-                    // variant="secondary"
+                    variant="outline"
                     className="flex items-center gap-2 text-success text-4lg text-green-600"
                 >
                     <PlayIcon className="h-4 w-4" />
                 </Button>
                 <Button
-                    // variant="secondary"
-                    className="flex items-center gap-2 text-success text-4lg text-yellow-100"
+                    variant="outline"
+                    className="flex items-center gap-2 text-success text-4lg text-yellow-700"
                 >
                     <ScrollIcon className="h-4 w-4" />
                 </Button>
