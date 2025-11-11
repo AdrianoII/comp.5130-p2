@@ -38,6 +38,9 @@ importers:
       '@runno/wasi':
         specifier: ^0.10.0
         version: 0.10.0
+      '@types/pg':
+        specifier: ^8.15.6
+        version: 8.15.6
       better-auth:
         specifier: ^1.3.34
         version: 1.3.34(next@15.5.4(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
