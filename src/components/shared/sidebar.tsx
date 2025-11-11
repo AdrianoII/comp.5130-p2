@@ -1,6 +1,6 @@
-// components/Sidebar.tsx
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -14,7 +14,6 @@ const items = [
   { href: "/playground", label: "Playground" },
   { href: "/publications", label: "Publications" },
   { href: "/collaborators", label: "Collaborator" },
-  
 ];
 
 export default function Sidebar() {
@@ -25,15 +24,25 @@ export default function Sidebar() {
 
   return (
     <aside className="h-screen w-64 shrink-0 border-r bg-white">
-      <div className="px-6 py-6 flex justify-center items-center">
-        <div className="h-14 w-14 rounded-full bg-gray-200" />
+   
+      <div className="px-6 py-8 flex justify-center items-center">
+        <Link href="/">
+          <Image
+            src="/logo2.png" 
+            alt="Project Logo"
+            width={64}
+            height={64}
+            className="rounded-md hover:scale-105 transition-transform duration-200"
+            priority
+          />
+        </Link>
       </div>
 
       <Separator />
 
+   
       <nav className="mt-2 space-y-1 px-2">
         {items.map((it) => {
-          // Only compute "active" after mount to avoid SSR/CSR mismatch
           const active =
             mounted &&
             (pathname === it.href ||
