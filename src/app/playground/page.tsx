@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { WASI } from "@runno/wasi";
 import ExampleSelector from "@/components/shared/exampleselector";
 import { editor } from 'monaco-editor';
+import { authClient } from "@/lib/auth-client";
 
 export default function Playground() {
     const editorRef = useRef<editor.IStandaloneCodeEditor>(null);
@@ -23,6 +24,7 @@ export default function Playground() {
     }
 
     useEffect(() => {
+
         const maybeElem = document.querySelector("#div");
         if (maybeElem) {
             console.log(maybeElem.innerHTML)
@@ -34,7 +36,7 @@ export default function Playground() {
 
 
     useEffect(() => {
-        const result = WASI.start(fetch("/hello.wasm"), {
+        const result = WASI.start(fetch("/lc.wasm"), {
             // args: ["binary-name", "--do-something", "some-file.txt"],
             args: [],
             env: {},
@@ -58,6 +60,39 @@ export default function Playground() {
 
     return (
         <section className="mx-auto max-w-5xl p-6 space-y-4">
+            <Button
+                variant="destructive"
+                className="flex items-center gap-2 text-success text-4lg"
+                onClick={async () => {
+                    console.log("Signing in with github")
+                    await authClient.signIn.social({
+                        /**
+                         * The social provider ID
+                         * @example "github", "google", "apple"
+                         */
+                        provider: "github",
+                        // /**
+                        //  * A URL to redirect after the user authenticates with the provider
+                        //  * @default "/"
+                        //  */
+                        // callbackURL: "/dashboard",
+                        // /**
+                        //  * A URL to redirect if an error occurs during the sign in process
+                        //  */
+                        // errorCallbackURL: "/error",
+                        // /**
+                        //  * A URL to redirect if the user is newly registered
+                        //  */
+                        // newUserCallbackURL: "/welcome",
+                        // /**
+                        //  * disable the automatic redirect to the provider. 
+                        //  * @default false
+                        //  */
+                        // disableRedirect: true,
+                    });
+                }
+                }
+            >AUTH</Button>
             <div className="flex flex-col items-center text-center">
                 <h1 className="text-2xl font-semibold mb-2">
                     Select a code example

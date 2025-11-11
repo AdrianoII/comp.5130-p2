@@ -39,13 +39,13 @@ const db = new Kysely<Database>({
 
 export const auth = betterAuth({
     database: { db: db, type: 'postgres', },
-    emailAndPassword: {
-        enabled: true,
-    },
-    // socialProviders: { 
-    //     github: { 
-    //         clientId: process.env.GITHUB_CLIENT_ID!, 
-    //         clientSecret: process.env.GITHUB_CLIENT_SECRET!, 
-    //     } 
-    // }, 
+    // emailAndPassword: {
+    //     enabled: true,
+    // },
+    socialProviders: { 
+        github: { 
+            clientId: process.env.GITHUB_CLIENT_ID!, 
+            clientSecret: process.env.GITHUB_CLIENT_SECRET!, 
+        } 
+    }, 
 });
