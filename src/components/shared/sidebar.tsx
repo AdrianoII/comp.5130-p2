@@ -23,12 +23,12 @@ export default function Sidebar() {
   useEffect(() => setMounted(true), []);
 
   return (
-    <aside className="h-screen w-64 shrink-0 border-r bg-white">
-   
+    <aside className="h-screen w-64 shrink-0 border-r bg-white shadow-sm">
+      
       <div className="px-6 py-8 flex justify-center items-center">
         <Link href="/">
           <Image
-            src="/logo2.png" 
+            src="/logo2.png"
             alt="Project Logo"
             width={64}
             height={64}
@@ -41,7 +41,7 @@ export default function Sidebar() {
       <Separator />
 
    
-      <nav className="mt-2 space-y-1 px-2">
+      <nav className="mt-4 space-y-2 px-3">
         {items.map((it) => {
           const active =
             mounted &&
@@ -54,15 +54,17 @@ export default function Sidebar() {
               variant="ghost"
               asChild
               className={cn(
-                "w-full justify-start gap-3 px-4",
-                active ? "bg-gray-100 text-gray-900" : "text-gray-600"
+                "w-full justify-start gap-3 px-4 py-3 rounded-lg transition-all duration-200",
+                active
+                  ? "bg-amber-400 text-amber-900 font-medium"
+                  : "text-gray-700 hover:bg-amber-50 hover:text-amber-900 hover:shadow-sm"
               )}
             >
               <Link href={it.href}>
                 <span
                   className={cn(
-                    "inline-block h-2.5 w-2.5 rounded-full",
-                    active ? "bg-gray-900" : "bg-gray-300"
+                    "inline-block h-2.5 w-2.5 rounded-full transition-colors duration-200",
+                    active ? "bg-amber-800" : "bg-gray-300 group-hover:bg-amber-600"
                   )}
                 />
                 {it.label}

@@ -116,22 +116,29 @@ export default function Playground() {
                 />
             </div>
 
-            <div className='w-full flex flex-row content-center justify-center items-center gap-16'>
+            <div className="w-full flex justify-center items-center gap-8 mt-6">
+
                 <Button
-                    variant="outline"
-                    className="flex items-center gap-2 text-success text-4lg text-green-600"
+                    variant="default"
+                    className="flex items-center gap-2 px-6 py-5 text-base font-medium bg-emerald-600 hover:bg-emerald-700 text-white shadow-md transition-all duration-200 hover:scale-[1.03]"
                 >
-                    <PlayIcon className="h-4 w-4" />
+                    <PlayIcon className="h-5 w-5" />
+                    Run Code
                 </Button>
+
+
                 <Button
-                    variant="outline"
-                    className="flex items-center gap-2 text-success text-4lg text-yellow-700"
+                    variant="default"
+                    className="flex items-center gap-2 px-6 py-5 text-base font-medium bg-amber-400 hover:bg-amber-400 text-amber-900 shadow-md transition-all duration-200 hover:scale-[1.03]"
                 >
-                    <ScrollIcon className="h-4 w-4" />
+                    <ScrollIcon className="h-5 w-5" />
+                    View Proof
                 </Button>
             </div>
 
+            <br/>
             <div>
+           
                 <Card>
                     <CardHeader>
                         <CardTitle className="text-base">Output/Proof</CardTitle>

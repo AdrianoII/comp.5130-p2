@@ -18,16 +18,16 @@ export default function Topbar() {
 
   return (
     <header className="sticky top-0 z-10 flex h-16 items-center justify-end gap-6 border-b bg-white/70 px-6 backdrop-blur">
-      {/* Sign In button with golden-brown background */}
+  
       <Button
         onClick={() => router.push("/signin")}
-        className="gap-2 bg-amber-600 hover:bg-amber-700 text-white"
+        className="gap-2 bg-amber-400 hover:bg-amber-400 text-amber-900"
       >
         <LogIn className="h-5 w-5" />
         <span className="hidden sm:inline">Sign in</span>
       </Button>
 
-      {/* User dropdown */}
+
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
