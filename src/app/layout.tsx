@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Sidebar from "@/components/shared/sidebar";
-import Topbar from "@/components/shared/topbar";
-import { Providers } from "./providers"
-
-// @/ = ./src
+import { Providers } from "./providers";
+import LayoutWrapper from "@/components/shared/layoutwrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,15 +22,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning className="h-full">
-      <body suppressHydrationWarning className="h-full bg-gray-50 text-gray-900">
+      <body className="h-full bg-gray-50 text-gray-900">
         <Providers>
-          <div className="flex">
-            <Sidebar />
-            <div className="flex min-h-screen flex-1 flex-col">
-              <Topbar />
-              <main className="flex-1 p-6">{children}</main>
-            </div>
-          </div>
+          <LayoutWrapper>{children}</LayoutWrapper>
         </Providers>
       </body>
     </html>

@@ -1,4 +1,5 @@
-// components/Topbar.tsx
+"use client";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,16 +10,24 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { HelpCircle, ChevronDown } from "lucide-react";
+import { LogIn, ChevronDown } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function Topbar() {
+  const router = useRouter();
+
   return (
     <header className="sticky top-0 z-10 flex h-16 items-center justify-end gap-6 border-b bg-white/70 px-6 backdrop-blur">
-      <Button variant="ghost" className="gap-2 text-gray-600">
-        <HelpCircle className="h-5 w-5" />
-        <span className="hidden sm:inline">Help</span>
+      {/* Sign In button with golden-brown background */}
+      <Button
+        onClick={() => router.push("/signin")}
+        className="gap-2 bg-amber-600 hover:bg-amber-700 text-white"
+      >
+        <LogIn className="h-5 w-5" />
+        <span className="hidden sm:inline">Sign in</span>
       </Button>
 
+      {/* User dropdown */}
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
