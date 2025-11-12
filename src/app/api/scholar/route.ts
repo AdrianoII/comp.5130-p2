@@ -17,8 +17,15 @@ export async function GET(request: Request) {
 
         const data = await res.json();
         return NextResponse.json(data.data);
-    } catch (error: any) {
-        console.error("Scholar API Error:", error.message);
-        return NextResponse.json({error: error.message }, {status: 500});
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            console.error("Scholar API Error:", error.message);
+            return NextResponse.json({ error: error.message }, { status: 500 });
+        } else if (typeof error === "string") {
+            console.error("Scholar API Error:", error);
+            return NextResponse.json({ error: error }, { status: 500 });
+        }
+        console.error("Scholar API Error: Unknown error");
+        return NextResponse.json({ error: "Unknown error occurred" }, { status: 500 });
     }
 }
