@@ -8,21 +8,23 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { LogIn, ChevronDown } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { createAuthClient } from "better-auth/react"
 import { useEffect } from "react";
 const { useSession } = createAuthClient()
+import { authClient } from "@/lib/auth-client";
+
 
 export default function Topbar() {
   const router = useRouter();
   const {
     data: session,
-    isPending, //loading state
-    error, //error object 
-    refetch //refetch the session
+    isPending,
+    error,
+    refetch
   } = useSession()
 
   useEffect(() => {
@@ -46,32 +48,42 @@ export default function Topbar() {
         <span className="hidden sm:inline">Sign in</span>
       </Button>
 
+      {session?.user &&
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              variant="ghost"
+              className="flex items-center gap-2 text-gray-900"
+            >
+              <Avatar className="h-8 w-8">
+                {session?.user?.image && <AvatarImage src={session?.user?.image} alt={session?.user?.name ?? "user's profile picture"} />}
+                <AvatarFallback>{session?.user?.name?.[0] ?? "U"}</AvatarFallback>
+              </Avatar>
+              <span>{session?.user?.name ?? "User"}</span>
+              <ChevronDown className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
 
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button
-            variant="ghost"
-            className="flex items-center gap-2 text-gray-900"
-          >
-            <Avatar className="h-8 w-8">
-              <AvatarFallback>SN</AvatarFallback>
-            </Avatar>
-            <span>Sean</span>
-            <ChevronDown className="h-4 w-4" />
-          </Button>
-        </DropdownMenuTrigger>
-
-        <DropdownMenuContent align="end" className="w-48">
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>Profile</DropdownMenuItem>
-          <DropdownMenuItem>Settings</DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem className="text-red-600">
-            Log out
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+          <DropdownMenuContent align="end" className="w-48">
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>Profile</DropdownMenuItem>
+            <DropdownMenuItem>Settings</DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem className="text-red-600 hover:text-red-800 hover:bg-red-100" onClick={async () => {
+              await authClient.signOut({
+                fetchOptions: {
+                  onSuccess: () => {
+                    router.push("/"); // redirect to login page
+                  },
+                },
+              });
+            }}>
+              Log out
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      }
     </header>
   );
 }
