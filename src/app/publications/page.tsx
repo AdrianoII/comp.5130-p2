@@ -87,8 +87,8 @@ export default function PublicationsPage() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Card className="hover:shadow-lg hover:shadow-amber-300/40 hover:border-amber-900 transition-all duration-200 cursor-pointer border border-gray-200 rounded-xl bg-white/90 backdrop-blur-sm hover:-translate-y-1">
-              <CardContent className="p-8">
+            <Card className="hover:shadow-lg hover:shadow-amber-300/40 hover:border-amber-900 transition-all duration-200 cursor-pointer border border-gray-200 rounded-xl bg-white/90 backdrop-blur-sm hover:-translate-y-1 mb-5">
+              <CardContent className="p-5">
                 <p className="text-lg md:text-xl font-medium text-gray-800 leading-relaxed hover:text-amber-900 transition-colors duration-200">
                   {index + 1}. {pub.title}
                 </p>
