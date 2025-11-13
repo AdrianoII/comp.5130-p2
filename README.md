@@ -25,3 +25,11 @@ Examples Table: At this table, code examples will be created by users. Every exa
 The database schema is in [schema.sql](schema.sql).
 
 The feature that interacts with the database is on the [playground](https://comp-5130-p2.vercel.app/playground) page. The example select input fetches the examples from the database and displays the respective selected example's code in the code editor.
+
+## Milestone 6: Authentication, Database Updates, API
+
+We implemented user authentication using better auth. At the navbar, if the user doesn't have a active session you will see a sign-in button. This button leads to a sign-in page. The sign-in process is made though Github using OAuth. Sadly, this only work in the production due CORS issues with localhost and Github OAuth apps. Once signed in, the user is redirected to the homepage, and the navbar updates to show the user's avatar (if available) and a dropdown menu with the options "My Examples" and "Log out".
+
+For the external API, we were planning to use Google scholar to fetch paper metadata, however, google scholar doesn't provide a public API. Thus, we decided to use a third-party API called Semantic Scholar. This API allows us to fetch metadata for academic papers. We created an endpoint at `/api/scholar` that accepts a query parameter and returns a list of papers corresponding the metadata.
+We use this API at the publications page, where we generate a dynamic list of publications that were returned by the API.
+The API was not in the original plans of our client, so we are still discussing where and how to integrate its use.
