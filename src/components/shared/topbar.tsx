@@ -12,13 +12,32 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { LogIn, ChevronDown } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { createAuthClient } from "better-auth/react"
+import { useEffect } from "react";
+const { useSession } = createAuthClient()
 
 export default function Topbar() {
   const router = useRouter();
+  const {
+    data: session,
+    isPending, //loading state
+    error, //error object 
+    refetch //refetch the session
+  } = useSession()
+
+  useEffect(() => {
+    console.log("at mount")
+    console.log("Session changed:", session)
+  }, [])
+
+
+  useEffect(() => {
+    console.log("Session changed:", session)
+  }, [session])
 
   return (
     <header className="sticky top-0 z-10 flex h-16 items-center justify-end gap-6 border-b bg-white/70 px-6 backdrop-blur">
-  
+
       <Button
         onClick={() => router.push("/signin")}
         className="gap-2 bg-amber-400 hover:bg-amber-400 text-amber-900"
