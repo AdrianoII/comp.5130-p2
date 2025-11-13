@@ -2,6 +2,27 @@
 
 import { useEffect, useState } from "react";
 import { Spinner } from "@/components/ui/spinner"
+import Link from "next/link";
+import { Card, CardContent } from "@/components/ui/card";
+
+
+const publications = [
+  {
+    title:
+      "Giuseppe Castagna, Programming with Union, Intersection, and Negation Types",
+    link: "https://www.researchgate.net/publication/Programming_with_Union_Intersection_and_Negation_Types",
+  },
+  {
+    title:
+      'Ghilezan, Silvia (1996). "Strong normalization and typability with intersection types". Notre Dame Journal of Formal Logic',
+    link: "https://projecteuclid.org/journals/notre-dame-journal-of-formal-logic/volume-37/issue-1",
+  },
+  {
+    title:
+      'Castagna, Giuseppe; Lanvin, Victor. "Gradual Typing with Union and Intersection Types". ICFP 2017.',
+    link: "https://dl.acm.org/doi/10.1145/3110265",
+  },
+];
 
 export default function PublicationsPage() {
   const [query, setQuery] = useState("intersection types, depedent types");
@@ -37,7 +58,7 @@ export default function PublicationsPage() {
       <h1 className="text-2xl font-semibold">Related Publications</h1>      {/* --- static list --- */}
       <div>
         <h2 className="text-lg font-medium mb-2">Classic Works</h2>
-        <ol className="list-decimal list-inside space-y-1">
+        {/* <ol className="list-decimal list-inside space-y-1">
           <li>
             Giuseppe Castagna, <i>Programming with Union, Intersection, and Negation Types</i>
           </li>
@@ -47,7 +68,23 @@ export default function PublicationsPage() {
           <li>
             Castagna, Giuseppe; Lanvin, Victor. <i>Gradual Typing with Union and Intersection Types</i>. ICFP 2017.
           </li>
-        </ol>
+        </ol> */}
+        {publications.map((pub, index) => (
+          <Link
+            key={index}
+            href={pub.link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Card className="hover:shadow-lg hover:shadow-amber-300/40 hover:border-amber-900 transition-all duration-200 cursor-pointer border border-gray-200 rounded-xl bg-white/90 backdrop-blur-sm hover:-translate-y-1">
+              <CardContent className="p-8">
+                <p className="text-lg md:text-xl font-medium text-gray-800 leading-relaxed hover:text-amber-900 transition-colors duration-200">
+                  {index + 1}. {pub.title}
+                </p>
+              </CardContent>
+            </Card>
+          </Link>
+        ))}
       </div>      {/* --- dynamic list --- */}
       <div className="mt-6">
         <h2 className="text-lg font-medium mb-2">Recent Research (via Semantic Scholar)</h2>
