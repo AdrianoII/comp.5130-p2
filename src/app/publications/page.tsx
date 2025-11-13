@@ -24,9 +24,25 @@ const publications = [
   },
 ];
 
+export interface ScholarAuthor {
+  authorId: string;
+  name: string;
+}
+
+export interface ScholarPaper {
+  paperId: string;
+  url: string;
+  title: string;
+  year: number;
+  citationCount: number;
+  authors: ScholarAuthor[];
+}
+
+export type ScholarSearchResults = ScholarPaper[];
+
 export default function PublicationsPage() {
   const [query, setQuery] = useState("intersection types, depedent types");
-  const [papers, setPapers] = useState<any[]>([]);
+  const [papers, setPapers] = useState<ScholarSearchResults>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -44,8 +60,14 @@ export default function PublicationsPage() {
           throw new Error(data.error || "Failed to load papers");
         }
 
-      } catch (err: any) {
-        setError(err.message);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          setError(error.message);
+        } else if (typeof error === "string") {
+          setError(error);
+        } else {
+          setError(`${error}`);
+        }
       } finally {
         setLoading(false);
       }
@@ -58,17 +80,6 @@ export default function PublicationsPage() {
       <h1 className="text-2xl font-semibold">Related Publications</h1>      {/* --- static list --- */}
       <div>
         <h2 className="text-lg font-medium mb-2">Classic Works</h2>
-        {/* <ol className="list-decimal list-inside space-y-1">
-          <li>
-            Giuseppe Castagna, <i>Programming with Union, Intersection, and Negation Types</i>
-          </li>
-          <li>
-            Ghilezan, Silvia (1996). <i>Strong normalization and typability with intersection types</i>. Notre Dame Journal of Formal
-          </li>
-          <li>
-            Castagna, Giuseppe; Lanvin, Victor. <i>Gradual Typing with Union and Intersection Types</i>. ICFP 2017.
-          </li>
-        </ol> */}
         {publications.map((pub, index) => (
           <Link
             key={index}
@@ -110,7 +121,7 @@ export default function PublicationsPage() {
                   {paper.title}
                 </a>{" "}
                 <span className="text-sm text-gray-600">
-                  - {paper.authors.map((a: any) => a.name).join(", ")} ({paper.year})
+                  - {paper.authors.map((a) => a.name).join(", ")} ({paper.year})
                 </span>
               </li>
             ))}
