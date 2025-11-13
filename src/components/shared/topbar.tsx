@@ -39,15 +39,15 @@ export default function Topbar() {
 
   return (
     <header className="sticky top-0 z-10 flex h-16 items-center justify-end gap-6 border-b bg-white/70 px-6 backdrop-blur">
-
-      <Button
-        onClick={() => router.push("/signin")}
-        className="gap-2 bg-amber-400 hover:bg-amber-400 text-amber-900"
-      >
-        <LogIn className="h-5 w-5" />
-        <span className="hidden sm:inline">Sign in</span>
-      </Button>
-
+      {session === null &&
+        <Button
+          onClick={() => router.push("/signin")}
+          className="gap-2 bg-amber-400 hover:bg-amber-400 text-amber-900"
+        >
+          <LogIn className="h-5 w-5" />
+          <span className="hidden sm:inline">Sign in</span>
+        </Button>
+      }
       {session?.user &&
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -65,19 +65,19 @@ export default function Topbar() {
           </DropdownMenuTrigger>
 
           <DropdownMenuContent align="end" className="w-48">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>Settings</DropdownMenuItem>
+            <DropdownMenuItem>My Examples</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem className="text-red-600 hover:text-red-800 hover:bg-red-100" onClick={async () => {
-              await authClient.signOut({
-                fetchOptions: {
-                  onSuccess: () => {
-                    router.push("/"); // redirect to login page
-                  },
-                },
-              });
+              await authClient.signOut(
+                // {
+                //   fetchOptions: {
+                //     onSuccess: () => {
+                //       router.push("/"); // redirect to login page
+                //     },
+                //   },
+                // }
+              );
             }}>
               Log out
             </DropdownMenuItem>
