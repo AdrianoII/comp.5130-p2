@@ -70,13 +70,13 @@ export default function Topbar() {
             <DropdownMenuSeparator />
             <DropdownMenuItem className="text-red-600 hover:text-red-800 hover:bg-red-100" onClick={async () => {
               await authClient.signOut(
-                // {
-                //   fetchOptions: {
-                //     onSuccess: () => {
-                //       router.push("/"); // redirect to login page
-                //     },
-                //   },
-                // }
+                {
+                  fetchOptions: {
+                    onSuccess: () => {
+                      router.refresh()
+                    },
+                  },
+                }
               );
             }}>
               Log out
