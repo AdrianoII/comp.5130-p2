@@ -68,7 +68,7 @@ export default function Topbar() {
             <DropdownMenuSeparator />
             <DropdownMenuItem>My Examples</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="text-red-600 hover:text-red-800 hover:bg-red-100" onClick={async () => {
+            <DropdownMenuItem className="text-red-600 focus:text-red-800 focus:bg-red-100" onClick={async () => {
               await authClient.signOut(
                 {
                   fetchOptions: {
