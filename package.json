@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@auth/neon-adapter": "^1.11.1",
-    "@daveyplate/better-auth-ui": "^3.2.8",
     "@monaco-editor/react": "^4.7.0",
     "@neondatabase/serverless": "^1.0.2",
     "@radix-ui/react-avatar": "^1.1.10",

@@ -27,16 +27,6 @@ export default function Topbar() {
     refetch
   } = useSession()
 
-  useEffect(() => {
-    console.log("at mount")
-    console.log("Session changed:", session)
-  }, [])
-
-
-  useEffect(() => {
-    console.log("Session changed:", session)
-  }, [session])
-
   return (
     <header className="sticky top-0 z-10 flex h-16 items-center justify-end gap-6 border-b bg-white/70 px-6 backdrop-blur">
       {session === null &&
