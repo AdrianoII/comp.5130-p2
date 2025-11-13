@@ -73,7 +73,7 @@ export default function Topbar() {
                 {
                   fetchOptions: {
                     onSuccess: () => {
-                      router.refresh()
+                      window.location.reload();
                     },
                   },
                 }
