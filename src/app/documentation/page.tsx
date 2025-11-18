@@ -21,8 +21,8 @@ export default function Documentation() {
 
       <h2>Usage</h2>
 
-      <pre><code className="language-sh">./lambda-calc eval "&lt;lambda_term&gt;"
-        ./lambda-calc type "&lt;lambda_term&gt;"
+      <pre><code className="language-sh">./lambda-calc eval &quot;&lt;lambda_term&gt;&quot;
+        ./lambda-calc type &quot;&lt;lambda_term&gt;&quot;
       </code></pre>
 
       <ul>
@@ -51,7 +51,7 @@ export default function Documentation() {
       <h3>Example 1: Evaluation (Identity Function)</h3>
 
       <p><strong>Command</strong></p>
-      <pre><code className="language-sh">./lambda-calc eval "\x. x"
+      <pre><code className="language-sh">./lambda-calc eval &quot;\x. x&quot;
       </code></pre>
 
       <p><strong>Output</strong></p>
@@ -63,7 +63,7 @@ export default function Documentation() {
       <h3>Example 2: Evaluation (Application of Identity)</h3>
 
       <p><strong>Command</strong></p>
-      <pre><code className="language-sh">./lambda-calc eval "(\x. x) (\y. y)"
+      <pre><code className="language-sh">./lambda-calc eval &quot;(\x. x) (\y. y)&quot;
       </code></pre>
 
       <p><strong>Output</strong></p>
@@ -75,7 +75,7 @@ export default function Documentation() {
       <h3>Example 3: Evaluation (Self-application)</h3>
 
       <p><strong>Command</strong></p>
-      <pre><code className="language-sh">./lambda-calc eval "(\x. x x) (\y. y)"
+      <pre><code className="language-sh">./lambda-calc eval &quot;(\x. x x) (\y. y)&quot;
       </code></pre>
 
       <p><strong>Output</strong></p>
@@ -87,7 +87,7 @@ export default function Documentation() {
       <h3>Example 4: Type Inference (Identity Function)</h3>
 
       <p><strong>Command</strong></p>
-      <pre><code className="language-sh">./lambda-calc type "\x. x"
+      <pre><code className="language-sh">./lambda-calc type &quot;\x. x&quot;
       </code></pre>
 
       <p><strong>Output</strong></p>
@@ -99,7 +99,7 @@ export default function Documentation() {
       <h3>Example 5: Type Inference (Function Composition)</h3>
 
       <p><strong>Command</strong></p>
-      <pre><code className="language-sh">./lambda-calc type "\f. \x. f (f x)"
+      <pre><code className="language-sh">./lambda-calc type &quot;\f. \x. f (f x)&quot;
       </code></pre>
 
       <p><strong>Output</strong></p>
@@ -111,7 +111,7 @@ export default function Documentation() {
       <h3>Example 6: Type Error (Non-typable term)</h3>
 
       <p><strong>Command</strong></p>
-      <pre><code className="language-sh">./lambda-calc type "(\x. x x)"
+      <pre><code className="language-sh">./lambda-calc type &quot;(\x. x x)&quot;
       </code></pre>
 
       <p><strong>Output</strong></p>
