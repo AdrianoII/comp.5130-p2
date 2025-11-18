@@ -10,7 +10,9 @@ import { editor } from 'monaco-editor';
 
 export default function Playground() {
     const editorRef = useRef<editor.IStandaloneCodeEditor>(null);
-    const [input, setInput] = useState("")
+    const [input, setInput] = useState("");
+    const [output, setOutput] = useState("");
+    const [error, setError] = useState("");
 
     function handleEditorDidMount(editor: editor.IStandaloneCodeEditor, monaco: Monaco): void {
         editorRef.current = editor;
@@ -22,40 +24,18 @@ export default function Playground() {
         }
     }
 
-    useEffect(() => {
-
-        const maybeElem = document.querySelector("#div");
-        if (maybeElem) {
-            console.log(maybeElem.innerHTML)
-        } else {
-            console.log(maybeElem)
-        }
-    }, []);
-
-
-
-    useEffect(() => {
+    const runCode = (mode: "eval" | "type") => {
+        console.log("Running code:", input);
+        console.log(['lambda-calc', 'eval', `${input}`])
         const result = WASI.start(fetch("/lc.wasm"), {
-            // args: ["binary-name", "--do-something", "some-file.txt"],
-            args: [],
+            args: ['lambda-calc', 'eval', input],
             env: {},
-            stdout: (out) => console.log("stdout", out),
-            stderr: (err) => console.error("stderr", err),
+            stdout: (out) => { console.log("stdout", out); setOutput(out) },
+            stderr: (err) => { console.error("stderr", err); setError(err) },
             stdin: () => prompt("stdin:"),
-            fs: {
-                "/some-file.txt": {
-                    path: "/some-file.txt",
-                    timestamps: {
-                        access: new Date(),
-                        change: new Date(),
-                        modification: new Date(),
-                    },
-                    mode: "string",
-                    content: "Some content for the file.",
-                },
-            },
+            fs: {},
         });
-    }, [])
+    }
 
     return (
         <section className="mx-auto max-w-5xl p-6 space-y-4">
@@ -87,6 +67,9 @@ export default function Playground() {
                 <Button
                     variant="default"
                     className="flex items-center gap-2 px-6 py-5 text-base font-medium bg-emerald-600 hover:bg-emerald-700 text-white shadow-md transition-all duration-200 hover:scale-[1.03]"
+                    onClick={() => {
+                        runCode("eval");
+                    }}
                 >
                     <PlayIcon className="h-5 w-5" />
                     Run Code
@@ -96,21 +79,32 @@ export default function Playground() {
                 <Button
                     variant="default"
                     className="flex items-center gap-2 px-6 py-5 text-base font-medium bg-amber-400 hover:bg-amber-400 text-amber-900 shadow-md transition-all duration-200 hover:scale-[1.03]"
+                    onClick={() => {
+                        runCode("type");
+                    }}
                 >
                     <ScrollIcon className="h-5 w-5" />
                     View Proof
                 </Button>
             </div>
 
-            <br/>
+            <br />
             <div>
-           
+
                 <Card>
                     <CardHeader>
                         <CardTitle className="text-base">Output/Proof</CardTitle>
                     </CardHeader>
                     <CardContent className="text-sm text-gray-600">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                        {error.length > 0 &&
+                            <pre className="text-red-600 whitespace-pre-wrap">{error}</pre>
+                        }
+                        {error.length === 0 && output.length === 0 &&
+                            <p>Waiting for user&apos;s action</p>
+                        }
+                        {error.length === 0 && output.length > 0 &&
+                            <pre className="whitespace-pre-wrap">{output}</pre>
+                        }
                     </CardContent>
                 </Card>
             </div>

@@ -46,12 +46,12 @@ export default function ExampleSelector({ onChange }: { onChange: (v: string) =>
         setSelectedExample(v);
       }}>
         <SelectTrigger className="w-full">
-          <SelectValue placeholder="Choose a coding example" />
+          <SelectValue placeholder="Choose a code example" />
         </SelectTrigger>
 
         <SelectContent>
           <SelectGroup>
-            <SelectLabel>Coding Examples</SelectLabel>
+            <SelectLabel>Code Examples</SelectLabel>
             {examples.map((ex: Example) =>
               <SelectItem key={ex.id} value={ex.id.toString()}>{ex.title}</SelectItem>
             )}
