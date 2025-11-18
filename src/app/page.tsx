@@ -7,9 +7,10 @@ export default function Home() {
       <div className="mb-6">
         <p className="text-xs uppercase tracking-wider text-gray-500">Overview</p>
         <h1 className="mt-2 text-2xl font-semibold leading-tight">
-          Pint is an extension to the educational language Piforall, which adds support for intersection data types.
+          <strong className="text-amber-600">Pint</strong>: Intersection + Depedent Types.
         </h1>
         <p className="mt-2 max-w-3xl text-sm leading-6 text-gray-600">
+          <strong className="text-amber-600">Pint</strong> is an extension to the educational language <a className="decoration-dashed" href="https://github.com/sweirich/pi-forall">Piforall</a>, which adds support for intersection data types.
           Pint, which allows to encode expressive types like inductive-inductive and inductive-recursive types. Building on traditional Sigma types, this extension makes Piforall more expressive while also ultimately building a formally verified compiler.
         </p>
       </div>

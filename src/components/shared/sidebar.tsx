@@ -13,7 +13,7 @@ const items = [
   { href: "/documentation", label: "Documentation" },
   { href: "/playground", label: "Playground" },
   { href: "/publications", label: "Publications" },
-  { href: "/collaborators", label: "Collaborator" },
+  { href: "/collaborators", label: "Collaborators" },
 ];
 
 export default function Sidebar() {
