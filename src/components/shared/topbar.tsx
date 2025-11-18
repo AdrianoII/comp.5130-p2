@@ -32,7 +32,7 @@ export default function Topbar() {
       {session === null &&
         <Button
           onClick={() => router.push("/signin")}
-          className="gap-2 bg-amber-400 hover:bg-amber-400 text-amber-900"
+          className="gap-2 bg-amber-400 hover:bg-amber-400 text-amber-900 cursor-pointer"
         >
           <LogIn className="h-5 w-5" />
           <span className="hidden sm:inline">Sign in</span>
