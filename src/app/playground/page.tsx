@@ -28,7 +28,7 @@ export default function Playground() {
         console.log("Running code:", input);
         console.log(['lambda-calc', mode, `${input}`])
         const result = WASI.start(fetch("/lc.wasm"), {
-            args: ['lambda-calc', 'eval', input],
+            args: ['lambda-calc', mode, input],
             env: {},
             stdout: (out) => { console.log("stdout", out); setOutput(out) },
             stderr: (err) => { console.error("stderr", err); setError(err) },
