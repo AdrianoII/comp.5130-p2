@@ -16,11 +16,11 @@ The production URL of this project is: [https://comp-5130-p2.vercel.app/](https:
 
 ## Milestone 5: Database schema, initial database implementation
 
-The [ER](artifacts/er.png) diagram represents a simple system with two main entities, Users and Examples: where both of these entities are internally connected by a one-to-many relationship. 
+The [ER](artifacts/er.png) diagram represents a simple system with two main entities, User and Example: where both of these entities are internally connected by a one-to-many relationship. 
  
 Users Table: Each record in this table represents a user registered on the system. Each user will have an id, an email for login, a hashed password for authentication, and a role either for admin or user. The created_at field records when the account was created.
 
-Examples Table: At this table, code examples will be created by users. Every example will have its own id, title, a block of code, and timestamps for creation and last updates. The user_id field links each example with who has created it.
+Example Table: At this table, code examples will be created by users. Every example will have its own id, title, a block of code, and timestamps for creation and last updates. The user_id field links each example with who has created it.
 
 The database schema is in [schema.sql](schema.sql).
 
