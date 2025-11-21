@@ -27,7 +27,7 @@ export default function ExampleSelector({ onChange }: { onChange: (v: string) =>
   useEffect(() => {
     // TODO: Maybe we should add the API_URL as an env var 
     const fetch_data = async () => {
-      const data = await fetch("https://comp-5130-p2.vercel.app/api/examples")
+      const data = await fetch(`${process.env.NEXT_PUBLIC_URL}api/examples`)
       setExamples(await data.json());
     };
     const data = fetch_data();
