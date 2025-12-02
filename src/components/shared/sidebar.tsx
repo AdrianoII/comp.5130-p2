@@ -23,8 +23,8 @@ export default function Sidebar() {
   useEffect(() => setMounted(true), []);
 
   return (
-    <aside className="h-screen w-64 shrink-0 border-r bg-white shadow-sm">
-      
+    // Hidden on small screens, visible from md upwards
+    <aside className="hidden md:flex h-screen w-64 shrink-0 flex-col border-r bg-white shadow-sm">
       <div className="px-6 py-8 flex justify-center items-center">
         <Link href="/">
           <Image
@@ -40,7 +40,6 @@ export default function Sidebar() {
 
       <Separator />
 
-   
       <nav className="mt-4 space-y-2 px-3">
         {items.map((it) => {
           const active =
@@ -54,7 +53,7 @@ export default function Sidebar() {
               variant="ghost"
               asChild
               className={cn(
-                "w-full justify-start gap-3 px-4 py-3 rounded-lg transition-all duration-200",
+                "group w-full justify-start gap-3 px-4 py-3 rounded-lg transition-all duration-200",
                 active
                   ? "bg-amber-400 text-amber-900 font-medium"
                   : "text-gray-700 hover:bg-amber-50 hover:text-amber-900 hover:shadow-sm"
