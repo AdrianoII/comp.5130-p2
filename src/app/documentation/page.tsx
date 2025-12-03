@@ -266,7 +266,7 @@ Type Error: Infinite type (occurs check failed): t0 in (t0 -> t1)`}
 
         <div className="not-prose overflow-x-auto rounded-md border border-amber-400">
           <table className="min-w-full text-sm">
-            <thead className="bg-amber-100/80">
+            <thead className="bg-amber-400/80">
               <tr>
                 <th className="px-3 py-2 text-left font-semibold">Term</th>
                 <th className="px-3 py-2 text-left font-semibold">Meaning</th>
