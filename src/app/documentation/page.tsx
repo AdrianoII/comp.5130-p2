@@ -39,12 +39,12 @@ export default function Documentation() {
         <div className="not-prose space-y-2">
           <pre className="overflow-x-auto rounded-md bg-slate-950 text-slate-50 p-3 text-xs sm:text-sm">
             <code className="language-sh">
-              ./lambda-calc eval "&lt;lambda_term&gt;"
+              ./lambda-calc eval &ldquo;&lt;lambda_term&gt;&rdquo;
             </code>
           </pre>
           <pre className="overflow-x-auto rounded-md bg-slate-950 text-slate-50 p-3 text-xs sm:text-sm">
             <code className="language-sh">
-              ./lambda-calc type "&lt;lambda_term&gt;"
+              ./lambda-calc type &ldquo;&lt;lambda_term&gt;&rdquo;
             </code>
           </pre>
         </div>
@@ -101,7 +101,7 @@ export default function Documentation() {
         </p>
         <div className="not-prose">
           <pre className="overflow-x-auto rounded-md bg-slate-950 text-slate-50 p-3 text-xs sm:text-sm">
-            <code className="language-sh">./lambda-calc eval "\x. x"</code>
+            <code className="language-sh">./lambda-calc eval &ldquo;\x. x&rdquo;</code>
           </pre>
         </div>
 
@@ -126,7 +126,7 @@ Result: (\\x. x)`}
         <div className="not-prose">
           <pre className="overflow-x-auto rounded-md bg-slate-950 text-slate-50 p-3 text-xs sm:text-sm">
             <code className="language-sh">
-              ./lambda-calc eval "(\x. x) (\y. y)"
+              ./lambda-calc eval &ldquo;(\x. x) (\y. y)&rdquo;
             </code>
           </pre>
         </div>
@@ -152,7 +152,7 @@ Result: (\\y. y)`}
         <div className="not-prose">
           <pre className="overflow-x-auto rounded-md bg-slate-950 text-slate-50 p-3 text-xs sm:text-sm">
             <code className="language-sh">
-              ./lambda-calc eval "(\x. x x) (\y. y)"
+              ./lambda-calc eval &ldquo;(\x. x x) (\y. y)&rdquo;
             </code>
           </pre>
         </div>
@@ -177,7 +177,7 @@ Result: (\\y. y)`}
         </p>
         <div className="not-prose">
           <pre className="overflow-x-auto rounded-md bg-slate-950 text-slate-50 p-3 text-xs sm:text-sm">
-            <code className="language-sh">./lambda-calc type "\x. x"</code>
+            <code className="language-sh">./lambda-calc type &ldquo;\x. x&ldquo;</code>
           </pre>
         </div>
 
@@ -202,7 +202,7 @@ Type: t0 -> t0`}
         <div className="not-prose">
           <pre className="overflow-x-auto rounded-md bg-slate-950 text-slate-50 p-3 text-xs sm:text-sm">
             <code className="language-sh">
-              ./lambda-calc type "\f. \x. f (f x)"
+              ./lambda-calc type &ldquo;\f. \x. f (f x)&ldquo;
             </code>
           </pre>
         </div>
@@ -227,7 +227,7 @@ Type: (t0 -> t0) -> t0 -> t0`}
         </p>
         <div className="not-prose">
           <pre className="overflow-x-auto rounded-md bg-slate-950 text-slate-50 p-3 text-xs sm:text-sm">
-            <code className="language-sh">./lambda-calc type "(\x. x x)"</code>
+            <code className="language-sh">./lambda-calc type &ldquo;(\x. x x)&rdquo;</code>
           </pre>
         </div>
 
