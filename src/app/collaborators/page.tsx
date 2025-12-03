@@ -2,10 +2,10 @@
 import { CollaboratorCard } from "@/components/shared/collaboratorcard";
 
 const people = [
-  { name: "Shriya Thakur", initials: "ST", location: "London, United Kingdom", country: "UK" },
+  { name: "Shriya Thakur", initials: "ST", location: "London, United Kingdom", country: "UK", research: "Intersection Types" },
   // { name: "Adriano II", initials: "AI", location: "London, United Kingdom", country: "UK" },
-  { name: "Paul D", initials: "PD", location: "London, United Kingdom", country: "UK" },
-  { name: "Cody Fisher", initials: "CF", location: "London, United Kingdom", country: "UK" },
+  { name: "Paul D", initials: "PD", location: "London, United Kingdom", country: "UK", research: "Type Systems" },
+  { name: "Cody Fisher", initials: "CF", location: "London, United Kingdom", country: "UK", research: "Programming Languages" },
 ];
 
 export default function Collaborator() {

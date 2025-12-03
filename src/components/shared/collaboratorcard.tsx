@@ -16,7 +16,7 @@ type Collaborator = {
   initials: string;
   location: string;
   country: string;
-  verified?: boolean;
+  research: string;
 };
 
 export function CollaboratorCard({
@@ -24,7 +24,8 @@ export function CollaboratorCard({
   initials,
   location,
   country,
-  verified = true,
+  research,
+
 }: Collaborator) {
   return (
     <Card className="overflow-hidden rounded-2xl shadow-sm">
@@ -33,15 +34,15 @@ export function CollaboratorCard({
         <div className="text-center">
           <div className="flex items-center justify-center gap-1">
             <p className="text-base font-semibold">{name}</p>
-            {verified && <BadgeCheck className="h-4 w-4" />}
+           
           </div>
 
           <div className="mt-2 flex items-center justify-center gap-2 text-xs text-gray-500">
             <MapPin className="h-3.5 w-3.5" />
             <span>{location}</span>
-            <span className="inline-block h-3 w-8 rounded-sm bg-gray-300 align-middle" />
-            {/* small grey bar to mimic screenshot’s flag/badge */}
           </div>
+      
+            
         </div>
       </CardContent>
     </Card>
