@@ -2,10 +2,8 @@
 import { CollaboratorCard } from "@/components/shared/collaboratorcard";
 
 const people = [
-  { name: "Shriya Thakur", initials: "ST", location: "London, United Kingdom", country: "UK", research: "Intersection Types" },
-  // { name: "Adriano II", initials: "AI", location: "London, United Kingdom", country: "UK" },
-  { name: "Paul D", initials: "PD", location: "London, United Kingdom", country: "UK", research: "Type Systems" },
-  { name: "Cody Fisher", initials: "CF", location: "London, United Kingdom", country: "UK", research: "Programming Languages" },
+  { name: "Shriya Thakur", pfp: "shriya.jpg", initials: "ST", location: "Lowell, MA", country: "US", research: "Intersection Types", homepage: "https://github.com/SmoothThunk" },
+  { name: "Paul Downen", pfp: "paul.webp", initials: "PD", location: "Lowell, MA", country: "US", research: "Type Systems", homepage: "https://pauldownen.com" },
 ];
 
 // export default function Collaborator() {
@@ -31,12 +29,11 @@ export default function Collaborator() {
     <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-6" aria-labelledby="collaborators-heading">
       <p className="text-xs uppercase tracking-wider text-gray-500">Collaborators</p>
 
-      <h1
+      {/* <h1
         id="collaborators-heading"
         className="mt-2 text-2xl font-semibold leading-tight"
       >
-        Pint is an extension to the educational language Piforall, which adds support for intersection data types.
-      </h1>
+      </h1> */}
 
       <section className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {people.map((p, i) => (
