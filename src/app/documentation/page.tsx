@@ -4,7 +4,7 @@ export default function Documentation() {
   return (
     <section className="flex-1 w-full px-4 sm:px-6 lg:px-8 py-6">
       <article className="mx-auto max-w-5xl prose prose-amber prose-sm sm:prose-base lg:prose-lg xl:prose-xl">
-        <h1 className="font-semibold text-amber-600">Documentation</h1>
+        <h1 className="font-semibold">Documentation</h1>
         <p>
           A simple command-line interpreter for untyped and simply-typed lambda
           calculus, written in Haskell. It can{" "}
