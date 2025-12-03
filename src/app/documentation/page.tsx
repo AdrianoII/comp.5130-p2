@@ -4,7 +4,7 @@ export default function Documentation() {
   return (
     <section className="flex-1 w-full px-4 sm:px-6 lg:px-8 py-6">
       <article className="mx-auto max-w-5xl prose prose-amber prose-sm sm:prose-base lg:prose-lg xl:prose-xl">
-        <h1 className="font-semibold">Documentation</h1>
+        <h1 className="font-semibold text-amber-600">Documentation</h1>
         <p>
           A simple command-line interpreter for untyped and simply-typed lambda
           calculus, written in Haskell. It can{" "}
@@ -264,7 +264,7 @@ Type Error: Infinite type (occurs check failed): t0 in (t0 -> t1)`}
 
         <h2>Example Lambda Terms</h2>
 
-        <div className="not-prose overflow-x-auto rounded-md border border-amber-100 bg-amber-50/60">
+        <div className="not-prose overflow-x-auto rounded-md border border-amber-400">
           <table className="min-w-full text-sm">
             <thead className="bg-amber-100/80">
               <tr>
