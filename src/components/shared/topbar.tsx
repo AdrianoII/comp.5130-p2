@@ -33,6 +33,7 @@ const items = [
   { href: "/playground", label: "Playground" },
   { href: "/publications", label: "Publications" },
   { href: "/collaborators", label: "Collaborators" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Topbar() {
