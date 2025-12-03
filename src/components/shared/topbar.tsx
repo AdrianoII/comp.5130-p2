@@ -42,7 +42,7 @@ export default function Topbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-10 flex h-16 items-center justify-between gap-4 border-b bg-white/70 px-4 sm:px-6 backdrop-blur">
+    <header className="sticky top-0 flex h-16 items-center justify-between gap-4 border-b bg-white px-4 sm:px-6">
       <div className="flex items-center gap-3">
         <div className="md:hidden">
           <Sheet open={open} onOpenChange={setOpen}>
