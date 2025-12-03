@@ -9,6 +9,7 @@ type Collaborator = {
   location: string;
   country: string;
   research: string;
+  homepage: string;
 };
 
 export function CollaboratorCard({
