@@ -62,31 +62,28 @@ export default function Playground() {
                 />
             </div>
 
-            <div className="w-full flex justify-center items-center gap-8 mt-6">
+            <div className="w-full flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-8 mt-6">
 
                 <Button
                     variant="default"
-                    className="flex items-center gap-2 px-6 py-5 text-base font-medium bg-emerald-600 hover:bg-emerald-700 text-white shadow-md transition-all duration-200 hover:scale-[1.03]"
-                    onClick={() => {
-                        runCode("eval");
-                    }}
+                    className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-5 text-base font-medium bg-emerald-600 hover:bg-emerald-700 text-white shadow-md transition-all duration-200 hover:scale-[1.03]"
+                    onClick={() => runCode("eval")}
                 >
                     <PlayIcon className="h-5 w-5" />
                     Run Code
                 </Button>
 
-
                 <Button
                     variant="default"
-                    className="flex items-center gap-2 px-6 py-5 text-base font-medium bg-amber-400 hover:bg-amber-400 text-amber-900 shadow-md transition-all duration-200 hover:scale-[1.03]"
-                    onClick={() => {
-                        runCode("type");
-                    }}
+                    className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-5 text-base font-medium bg-amber-400 hover:bg-amber-400 text-amber-900 shadow-md transition-all duration-200 hover:scale-[1.03]"
+                    onClick={() => runCode("type")}
                 >
                     <ScrollIcon className="h-5 w-5" />
                     View Proof
                 </Button>
+
             </div>
+
 
             <br />
             <div>
