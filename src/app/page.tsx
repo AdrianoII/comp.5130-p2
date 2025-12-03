@@ -31,7 +31,7 @@ export default function Home() {
               <li>
                 Can generalize and encode <a href="https://personal.cis.strath.ac.uk/conor.mcbride/PlentyO-CR.pdf"
                   className="text-blue-600 hover:underline">
-                  Conor's system
+                  Conor&apos;s system
                 </a>
                 .
               </li>
