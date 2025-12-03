@@ -16,7 +16,7 @@ export default function Collaborator() {
         Pint is an extension to the educational language Piforall, which adds support for intersection data types.
       </h1>
 
-      <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {people.map((p, i) => (
           <CollaboratorCard key={i} {...p} />
         ))}
