@@ -7,20 +7,177 @@ import { Spinner } from "@/components/ui/spinner";
 
 const publications = [
   {
-    title:
-      "Giuseppe Castagna, Programming with Union, Intersection, and Negation Types",
-    link: "https://www.researchgate.net/publication/Programming_with_Union_Intersection_and_Negation_Types",
+    "title": "Stephanie Weirich, Implementing Dependent Types in pi-forall (2023)",
+    "link": "https://arxiv.org/abs/2207.02129"
   },
   {
-    title:
-      'Ghilezan, Silvia (1996). "Strong normalization and typability with intersection types". Notre Dame Journal of Formal Logic',
-    link: "https://projecteuclid.org/journals/notre-dame-journal-of-formal-logic/volume-37/issue-1",
+    "title": "Larry Diehl, Denis Firsov, Aaron Stump, Generic Zero-Cost Reuse for Dependent Types (2018)",
+    "link": "https://arxiv.org/abs/1803.08150"
   },
   {
-    title:
-      'Castagna, Giuseppe; Lanvin, Victor. "Gradual Typing with Union and Intersection Types". ICFP 2017.',
-    link: "https://dl.acm.org/doi/10.1145/3110265",
+    "title": "Denis Firsov, Richard Blair, Aaron Stump, Efficient Mendler-Style Lambda-Encodings in Cedille (2018)",
+    "link": "https://arxiv.org/abs/1803.02473"
   },
+  {
+    "title": "Denis Firsov, Aaron Stump, Generic derivation of induction for impredicative encodings in Cedille (2018)",
+    "link": "https://doi.org/10.1145/3167087"
+  },
+  {
+    "title": "Andrew Marmaduke, Larry Diehl, Aaron Stump, Impredicative Encodings of Inductive-Inductive Data in Cedille (2023)",
+    "link": "https://doi.org/10.1007/978-3-031-38938-2_1"
+  },
+  {
+    "title": "Aaron Stump, The calculus of dependent lambda eliminations (2017)",
+    "link": "https://homepage.cs.uiowa.edu/~astump/papers/cedille-draft.pdf"
+  },
+  {
+    "title": "Nick Rioux, Xuejing Huang, Bruno C. d. S. Oliveira, Steve Zdancewic, A Bowtie for a Beast: Overloading, Eta Expansion, and Extensible Data Types in F⋈ (2023)",
+    "link": "https://dl.acm.org/doi/10.1145/3571211"
+  },
+  {
+    "title": "Jean-Yves Girard, Paul Taylor, Yves Lafont, Proofs and types (1989)",
+    "link": "https://www.paultaylor.eu/stable/prot.pdf"
+  },
+  {
+    "title": "Conor McBride, I got plenty o'nuttin' (2016)",
+    "link": "https://personal.cis.strath.ac.uk/conor.mcbride/PlentyO-CR.pdf"
+  },
+  {
+    "title": "The Coq Development Team, The Coq Proof Assistant (2024)",
+    "link": "https://doi.org/10.5281/zenodo.14542673"
+  },
+  {
+    "title": "Gilles Barthe, François Dupressoir, Benjamin Grégoire, César Kunz, Benedikt Schmidt, Pierre-Yves Strub, Easycrypt: A tutorial (2012)",
+    "link": "https://link.springer.com/chapter/10.1007/978-3-319-10082-1_6"
+  },
+  {
+    "title": "Leonardo de Moura, Soonho Kong, Jeremy Avigad, Floris van Doorn, Jakob von Raumer, The Lean Theorem Prover (System Description) (2015)",
+    "link": "https://lean-lang.org/papers/system.pdf"
+  },
+  {
+    "title": "Ulf Norell, Dependently Typed Programming in Agda (2008)",
+    "link": "https://doi.org/10.1007/978-3-642-04652-0_5"
+  },
+  {
+    "title": "Matthieu Sozeau, Yannick Forster, Simon Boulier, Nicolas Tabareau, Théo Winterhalter, Coq Coq Codet! (2019)",
+    "link": "https://sozeau.gitlabpages.inria.fr/www/research/publications/Coq_Coq_Codet-CoqWS19.pdf"
+  },
+  {
+    "title": "Benjamin Moon, Harley Eades III, Dominic Orchard, Graded Modal Dependent Type Theory (2021)",
+    "link": "https://arxiv.org/abs/2010.13163"
+  },
+  {
+    "title": "Pritam Choudhury, Harley Eades III, Richard A. Eisenberg, Stephanie C. Weirhttps://dl.acm.org/doi/10.1145/3434331ich, A graded dependent type system with a usage-aware semantics (extended version) (2020)",
+    "link": "https://dl.acm.org/doi/10.1145/3434331"
+  },
+  {
+    "title": "Jean-Yves Girard, Linear logic (1987)",
+    "link": "https://www.sciencedirect.com/science/article/pii/0304397587900454"
+  },
+  {
+    "title": "Giuseppe Castagna, Programming with Union, Intersection, and Negation Types (2024)",
+    "link": "https://doi.org/10.1007/978-3-031-34518-0_12"
+  },
+  {
+    "title": "Paul Downen, Zena M. Ariola, Silvia Ghilezan, The Duality of Classical Intersection and Union Types (2019)",
+    "link": "https://doi.org/10.3233/FI-2019-1855"
+  },
+  {
+    "title": "Philip Wadler, Propositions as sessions (2012)",
+    "link": "https://doi.org/10.1145/2364527.2364568"
+  },
+  {
+    "title": "Luís Caires, Frank Pfenning, Session Types as Intuitionistic Linear Propositions (2010)",
+    "link": "https://www.cs.cmu.edu/~fp/papers/concur10.pdf"
+  },
+  {
+    "title": "Jean-Philippe Bernardy, Patrik Jansson, Ross Paterson, Parametricity and dependent types (2010)",
+    "link": "https://www.staff.city.ac.uk/~ross/papers/pts.pdf"
+  },
+  {
+    "title": "Benjamin C. Pierce, Types and programming languages (2002)",
+    "link": "https://www.cis.upenn.edu/~bcpierce/tapl/"
+  },
+  {
+    "title": "Amal Ahmed, Semantic Type Soundness and Interoperability (2024)",
+    "link": "https://www.cs.uoregon.edu/research/summerschool/summer24/lectures/Ahmed.pdf"
+  },
+  {
+    "title": "Paul Downen, Foundations of Programming languages (2018)",
+    "link": "https://www.cs.uoregon.edu/research/summerschool/summer18/lectures/foundations_notes.pdf"
+  },
+  {
+    "title": "Ulf Norell, Dependently typed programming in Agda (2009)",
+    "link": "https://doi.org/10.1145/1481861.1481862"
+  },
+  {
+    "title": "Aaron Stump, Towards Higher-Order Abstract Syntax in Cedille (Work in Progress) (2019)",
+    "link": "https://hal.science/hal-02152417"
+  },
+  {
+    "title": "Alexei Kopylov, Dependent intersection: A new way of defining records in type theory (2003)",
+    "link": "https://www.cs.cornell.edu/people/kopylov/papers/dinter/dinter.pdf"
+  },
+  {
+    "title": "Amal Ahmed, Semantics of Types for Mutable State (2006)",
+    "link": "https://www.cs.princeton.edu/research/techreps/TR-746-06"
+  },
+  {
+    "title": "Dimitrios Vytiniotis, Stephanie Weirich, Parametricity, type equality, and higher-order polymorphism (2010)",
+    "link": "https://doi.org/10.1017/S0956796810000079"
+  },
+  {
+    "title": "Jean-Yves Girard, The system F of variable types, fifteen years later (1986)",
+    "link": "https://www.sciencedirect.com/science/article/pii/0304397586900447"
+  },
+  {
+    "title": "Jana Dunfield, Neelakantan R. Krishnaswami, Complete and Easy Bidirectional Typechecking for Higher-Rank Polymorphism (2013)",
+    "link": "http://arxiv.org/abs/1306.6032"
+  },
+  {
+    "title": "Christa Jenkins, Andrew Marmaduke, Aaron Stump, Simulating Large Eliminations in Cedille (2021)",
+    "link": "https://doi.org/10.4230/LIPIcs.TYPES.2021.9"
+  },
+  {
+    "title": "Pierre-Évariste Dagand, Conor McBride, A Categorical Treatment of Ornaments (2013)",
+    "link": "https://doi.org/10.1109/LICS.2013.60"
+  },
+  {
+    "title": "David MacQueen, Gordon Plotkin, Ravi Sethi, An ideal model for recursive polymorphic types (1986)",
+    "link": "https://www.sciencedirect.com/science/article/pii/S0019995886800195"
+  },
+  {
+    "title": "Joachim Breitner, Richard A. Eisenberg, Simon Peyton Jones, Stephanie Weirich, Safe zero-cost coercions for Haskell (2016)",
+    "link": "https://doi.org/10.1017/S0956796816000150"
+  },
+  {
+    "title": "Martin Abadi, Luca Cardelli, A theory of objects (2012)",
+    "link": "https://dl.acm.org/doi/book/10.5555/547964"
+  },
+  {
+    "title": "Paul Downen, Zachary Sullivan, Zena M. Ariola, Simon Peyton Jones, Codata in action (2019)",
+    "link": "https://www.microsoft.com/en-us/research/wp-content/uploads/2020/01/CoDataInAction.pdf"
+  },
+  {
+    "title": "Dominic Orchard, Vilem-Benjamin Liepelt, Harley Eades III, Quantitative program reasoning with graded modal types (2019)",
+    "link": "https://doi.org/10.1145/3341714"
+  },
+  {
+    "title": "Andreas Abel, Nils Anders Danielsson, Oskar Eriksson, A Graded Modal Dependent Type Theory with a Universe and Erasure, Formalized (2023)",
+    "link": "https://doi.org/10.1145/3607862"
+  },
+  {
+    "title": "Han Xu, Xuejing Huang, Bruno C. d. S. Oliveira, Making a Type Difference: Subtraction on Intersection Types as Generalized Record Operations (2023)",
+    "link": "https://doi.org/10.1145/3571224"
+  },
+  {
+    "title": "Wenjia Ye, Yaozhu Sun, Bruno C. d. S. Oliveira, Imperative Compositional Programming: Type Sound Distributive Intersection Subtyping with References via Bidirectional Typing (2024)",
+    "link": "https://doi.org/10.1145/3689782"
+  },
+  {
+    "title": "Cyril Cohen, Thierry Coquand, Simon Huber, Anders Mörtberg, Cubical Type Theory: A Constructive Interpretation of the Univalence Axiom (2018)",
+    "link": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.TYPES.2015.5"
+  }
 ];
 
 export interface ScholarAuthor {
