@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
-import { useEffect, useState } from "react";
 
 const items = [
   { href: "/", label: "Overview" },
@@ -18,9 +17,6 @@ const items = [
 
 export default function Sidebar() {
   const pathname = usePathname();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
 
   return (
     // Hidden on small screens, visible from md upwards
@@ -40,12 +36,14 @@ export default function Sidebar() {
 
       <Separator />
 
-      <nav className="mt-4 space-y-2 px-3">
+      <nav
+        className="mt-4 space-y-2 px-3"
+        aria-label="Main site navigation"
+      >
         {items.map((it) => {
           const active =
-            mounted &&
-            (pathname === it.href ||
-              (it.href !== "/" && pathname.startsWith(it.href)));
+            pathname === it.href ||
+            (it.href !== "/" && pathname.startsWith(it.href));
 
           return (
             <Button
@@ -53,17 +51,22 @@ export default function Sidebar() {
               variant="ghost"
               asChild
               className={cn(
-                "group w-full justify-start gap-3 px-4 py-3 rounded-lg transition-all duration-200",
+                "group w-full justify-start gap-3 px-4 py-3 rounded-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white",
                 active
                   ? "bg-amber-400 text-amber-900 font-medium"
                   : "text-gray-700 hover:bg-amber-50 hover:text-amber-900 hover:shadow-sm"
               )}
             >
-              <Link href={it.href}>
+              <Link
+                href={it.href}
+                aria-current={active ? "page" : undefined}
+              >
                 <span
                   className={cn(
                     "inline-block h-2.5 w-2.5 rounded-full transition-colors duration-200",
-                    active ? "bg-amber-800" : "bg-gray-300 group-hover:bg-amber-600"
+                    active
+                      ? "bg-amber-800"
+                      : "bg-gray-300 group-hover:bg-amber-600"
                   )}
                 />
                 {it.label}

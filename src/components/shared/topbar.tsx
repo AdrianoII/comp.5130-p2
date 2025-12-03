@@ -42,13 +42,19 @@ export default function Topbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 flex h-16 items-center justify-between gap-4 border-b bg-white px-4 sm:px-6">
+    <header className="sticky top-0 flex h-16 items-center justify-between gap-4 border-b bg-white px-4 sm:px-6 z-10">
       <div className="flex items-center gap-3">
+        {/* Mobile nav toggle + logo */}
         <div className="md:hidden">
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="shrink-0">
-                <Menu className="h-5 w-5" />
+              <Button
+                variant="ghost"
+                size="icon"
+                className="shrink-0"
+                aria-label="Open main navigation"
+              >
+                <Menu className="h-5 w-5" aria-hidden="true" focusable="false" />
               </Button>
             </SheetTrigger>
 
@@ -66,10 +72,16 @@ export default function Topbar() {
                     height={32}
                     className="rounded-md"
                   />
+                  <SheetTitle className="sr-only">
+                    Pint main navigation
+                  </SheetTitle>
                 </Link>
               </SheetHeader>
 
-              <nav className="mt-4 space-y-2 px-3 pb-4">
+              <nav
+                className="mt-4 space-y-2 px-3 pb-4"
+                aria-label="Main site navigation"
+              >
                 {items.map((item) => {
                   const active =
                     pathname === item.href ||
@@ -89,7 +101,8 @@ export default function Topbar() {
                     >
                       <Link
                         href={item.href}
-                        onClick={() => setOpen(false)} 
+                        onClick={() => setOpen(false)}
+                        aria-current={active ? "page" : undefined}
                       >
                         <span
                           className={cn(
@@ -126,7 +139,7 @@ export default function Topbar() {
             onClick={() => router.push("/signin")}
             className="gap-2 bg-amber-400 hover:bg-amber-400 text-amber-900"
           >
-            <LogIn className="h-5 w-5" />
+            <LogIn className="h-5 w-5" aria-hidden="true" focusable="false" />
             <span className="hidden sm:inline">Sign in</span>
           </Button>
         )}
@@ -137,12 +150,17 @@ export default function Topbar() {
               <Button
                 variant="ghost"
                 className="flex items-center gap-2 text-gray-900"
+                aria-label={
+                  session.user.name
+                    ? `User menu for ${session.user.name}`
+                    : "User menu"
+                }
               >
                 <Avatar className="h-8 w-8">
                   {session.user.image && (
                     <AvatarImage
                       src={session.user.image}
-                      alt={session.user.name ?? "user's profile picture"}
+                      alt={session.user.name ?? "User profile picture"}
                     />
                   )}
                   <AvatarFallback>
@@ -152,7 +170,11 @@ export default function Topbar() {
                 <span className="hidden xs:inline">
                   {session.user.name ?? "User"}
                 </span>
-                <ChevronDown className="h-4 w-4" />
+                <ChevronDown
+                  className="h-4 w-4"
+                  aria-hidden="true"
+                  focusable="false"
+                />
               </Button>
             </DropdownMenuTrigger>
 
