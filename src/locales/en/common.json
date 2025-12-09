@@ -1,0 +1,26 @@
+{
+  "home": {
+    "overviewLabel": "Overview",
+    "heroSubtitle": ": Intersection + Dependent Types!",
+    "intro": {
+      "beforePiforall": "is an extension to the educational language",
+      "afterPiforall": ", which adds support for intersection data types. Pint allows us to encode expressive types like inductive-inductive and inductive-recursive types. Building on traditional Sigma types, this extension makes Piforall more expressive while also ultimately building a formally verified compiler."
+    },
+    "benefits": {
+      "title": "Benefits",
+      "body": "Pint enables developers and researchers to explore richer type systems and formal reasoning within a Haskell-based language. Its support for advanced type constructs can simplify proofs, reduce boilerplate in dependently typed code, and improve the reliability of complex language features. The formal verification aspect also ensures greater confidence in compiler correctness, which is valuable for both theoretical exploration and practical language design."
+    },
+    "interpreter": {
+      "title": "Interpreter",
+      "body": "We extend the Piforall implementation with intersection types by modifying its type checker and inference rules to handle type intersections during unification and evaluation. This involves extending the core type representation and adjusting the elaboration phase to preserve intersection structure in the generated core terms, ensuring that type soundness and normalization are maintained."
+    },
+    "source": {
+      "title": "Source Code",
+      "body": {
+        "beforeGithub": "Our source code and our proofs are publicly available on",
+        "afterGithub": ". Feel free to explore, contribute, or raise issues if you have any questions or suggestions!"
+      },
+      "githubAriaLabel": "Pi-forall GitHub"
+    }
+  }
+}

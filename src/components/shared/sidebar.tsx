@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
+import { LanguageSwitcher } from "@/components/shared/languageswitcher";
 
 const items = [
   { href: "/", label: "Overview" },
@@ -76,6 +77,11 @@ export default function Sidebar() {
           );
         })}
       </nav>
+
+      <div className="mt-auto mb-25 p-4">
+        <LanguageSwitcher />
+      </div>
+
     </aside>
   );
 }
