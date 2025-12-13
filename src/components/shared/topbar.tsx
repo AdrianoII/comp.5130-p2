@@ -181,14 +181,14 @@ export default function Topbar() {
 
             <DropdownMenuContent align="end" className="w-48">
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => 1}>
+              <DropdownMenuItem className="cursor-pointer">
                 <Link href={`/${session.user.name}/examples`}>
                 My Examples
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem
-                className="text-red-600 focus:text-red-800 focus:bg-red-100"
+                className="text-red-600 focus:text-red-800 focus:bg-red-100 cursor-pointer"
                 onClick={async () => {
                   await authClient.signOut({
                     fetchOptions: {
