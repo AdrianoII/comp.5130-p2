@@ -181,7 +181,11 @@ export default function Topbar() {
 
             <DropdownMenuContent align="end" className="w-48">
               <DropdownMenuSeparator />
-              <DropdownMenuItem>My Examples</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => 1}>
+                <Link href={`/${session.user.name}/examples`}>
+                My Examples
+                </Link>
+              </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 className="text-red-600 focus:text-red-800 focus:bg-red-100"
