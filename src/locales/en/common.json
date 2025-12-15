@@ -22,5 +22,18 @@
       },
       "githubAriaLabel": "Pi-forall GitHub"
     }
+  },
+
+  "nav": {
+    "overview": "Overview",
+    "documentation": "Documentation",
+    "playground": "Playground",
+    "publications": "Publications",
+    "collaborations": "Collaborations",
+    "contact": "Contact"
+  },
+
+  "login": {
+    "sign": "Sign in"
   }
 }

@@ -7,18 +7,22 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { LanguageSwitcher } from "@/components/shared/languageswitcher";
+import { useTranslation } from "react-i18next";
 
-const items = [
-  { href: "/", label: "Overview" },
-  { href: "/documentation", label: "Documentation" },
-  { href: "/playground", label: "Playground" },
-  { href: "/publications", label: "Publications" },
-  { href: "/collaborators", label: "Collaborators" },
-  { href: "/contact", label: "Contact" },
-];
+
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const { t } = useTranslation("common");
+
+  const items = [
+    { href: "/", key: "nav.overview" },
+    { href: "/documentation", key: "nav.documentation" },
+    { href: "/playground", key: "nav.playground" },
+    { href: "/publications", key: "nav.publications" },
+    { href: "/collaborators", key: "nav.collaborations" },
+    { href: "/contact", key: "nav.contact" },
+  ];
 
   return (
     // Hidden on small screens, visible from md upwards
@@ -71,7 +75,7 @@ export default function Sidebar() {
                       : "bg-gray-300 group-hover:bg-amber-600"
                   )}
                 />
-                {it.label}
+                {t(it.key)}
               </Link>
             </Button>
           );

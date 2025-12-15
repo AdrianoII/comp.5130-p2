@@ -12,8 +12,13 @@ import {
 export function LanguageSwitcher() {
   const { i18n, t } = useTranslation("common");
 
-  const languages = ["en", "fr"];
-  const currentLang = i18n.language.split("-")[0];
+  const languages = [
+    { code: "en", label: "English" },
+    { code: "fr", label: "French" },
+  ];
+  const current = i18n.language.split("-")[0];
+
+  const active = languages.find((l) => l.code === current);
 
   return (
     <DropdownMenu>
@@ -21,17 +26,17 @@ export function LanguageSwitcher() {
         className="inline-flex items-center gap-2 rounded-md border border-amber-600 px-3 py-1 text-sm bg-amber-50 text-amber-700 hover:bg-amber-100"
       >
         <Globe2 size={16} className="text-amber-700" />
-        <span>{t(`languages.${currentLang}`)}</span>
+        <span>{active?.label ?? "Select"}</span>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align="end">
         {languages.map((lang) => (
           <DropdownMenuItem
-            key={lang}
-            onClick={() => i18n.changeLanguage(lang)}
-            className={lang === currentLang ? "font-semibold" : ""}
+            key={lang.code}
+            onClick={() => i18n.changeLanguage(lang.code)}
+            className={current === lang.code ? "font-semibold" : ""}
           >
-            {t(`languages.${lang}`)}
+            {lang.label}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
