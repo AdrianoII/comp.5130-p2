@@ -47,7 +47,7 @@ export async function POST(request: Request) {
         return Response.json({ error: "Unauthorized: Invalid session" }, { status: 401 });
     }
 
-    let body: any;
+    let body;
     try {
         body = await request.json();
     } catch (e) {
@@ -83,7 +83,7 @@ export async function PUT(request: Request) {
 
     const admin = await isAdmin(user.id);
 
-    let body: any;
+    let body;
     try {
         body = await request.json();
     } catch (e) {
@@ -141,7 +141,7 @@ export async function DELETE(request: Request) {
 
     const admin = await isAdmin(user.id);
 
-    let body: any;
+    let body;
     try {
         body = await request.json();
     } catch (e) {
