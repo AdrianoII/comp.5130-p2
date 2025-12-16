@@ -1,0 +1,114 @@
+{
+  "home": {
+    "overviewLabel": "Resumen",
+    "heroSubtitle": " : Tipos de intersección y tipos dependientes",
+    "intro": {
+      "beforePiforall": "es una extensión del lenguaje educativo",
+      "afterPiforall": ", que añade soporte para tipos de datos por intersección. Pint permite codificar tipos expresivos como tipos inductivo-inductivos e inductivo-recursivos. Basándose en los tipos Sigma tradicionales, esta extensión hace que Piforall sea más expresivo y, en última instancia, conduce a la construcción de un compilador formalmente verificado."
+    },
+    "description": {
+      "body1": " se basa en ",
+      "body2": ", un verificador de tipos bidireccional simple y minimalista para tipos dependientes escrito en Haskell, y lo extiende con tipos ",
+      "body3": " y sus duales, los tipos ",
+      "body4": ", para codificar tipos definidos por el usuario y soportar principios avanzados de razonamiento como la inducción-inducción, manteniendo al mismo tiempo un núcleo pequeño. Estas extensiones incluyen intersecciones, uniones y funciones de primera clase para modelar sistemas orientados a objetos e interfaces de tipos codata, donde las intersecciones capturan múltiples interfaces (A y B) y las uniones capturan interfaces variantes o dinámicas (A o B), particularmente útiles para modelar comportamiento orientado a objetos dinámico. El sistema también incorpora coerciones representadas como anotaciones explícitas de términos, lo que permite un razonamiento verificado sobre conversiones de tipos, y utiliza el subtipado tanto para modelar herencia como para expresar una noción de igualdad de tipos, donde el subtipado mutuo implica equivalencia de tipos.",
+      "body5": " además incorpora cuantificadores impredicativos (forall y exists) al estilo de System F para generalizar los tipos de funciones y pares dependientes, asegurando que las abstracciones lógicas y los constructores de datos coexistan dentro de un mismo núcleo. Incluye universos de la teoría de tipos de Cedille, con Prop para tipos impredicativos “pequeños” y Type para tipos “grandes” análogos a conjuntos, y utiliza cantidades para capturar la esencia del borrado de tipos requerido para los tipos de intersección y unión, aclarar la distinción entre tiempo de compilación y tiempo de ejecución, y expresar recursos lineales y con estado en programas imperativos. La innovación principal consiste en representar los tipos de intersección y unión mediante un parámetro de trayectoria computacionalmente irrelevante, similar en espíritu a la teoría de tipos cúbica, y todas estas extensiones viven en un único cálculo con una teoría de tipos bidireccional intrínseca y dirigida por la sintaxis, de modo que cada característica reutiliza el mismo núcleo pequeño y confiable en lugar de ampliarlo."
+    },
+    "contributions": {
+      "title": "Contribuciones",
+      "bullet1": "Puede generalizar y codificar ",
+      "bullet2": "Borrado y posterior verificación de la equivalencia de programas, lo cual es fácil de implementar en sistemas implícitos en comparación con el borrado de índices.",
+      "bullet3": "Reglas de tipado.",
+      "bullet4": "Forall.",
+      "bullet5": "La ausencia de borrado en las reglas de tipado facilita la implementación.",
+      "bullet6": "Tamaño reducido del núcleo sin sacrificar expresividad.",
+      "bullet7": "Núcleo formalmente verificado mediante una traducción a Coq."
+    },
+    "interpreter": {
+      "title": "Intérprete",
+      "body": "Extendemos la implementación de Piforall con tipos de intersección modificando su verificador de tipos y sus reglas de inferencia para manejar intersecciones de tipos durante la unificación y la evaluación. Esto implica extender la representación central de tipos y ajustar la fase de elaboración para preservar la estructura de intersección en los términos centrales generados, garantizando así la corrección de tipos y la normalización."
+    },
+    "source": {
+      "title": "Código fuente",
+      "body": {
+        "beforeGithub": "Nuestro código fuente y nuestras pruebas están disponibles públicamente en",
+        "afterGithub": ". ¡No dudes en explorar, contribuir o reportar problemas si tienes preguntas o sugerencias!"
+      },
+      "githubAriaLabel": "GitHub de Pi-forall"
+    }
+  },
+
+  "nav": {
+    "overview": "Resumen",
+    "documentation": "Documentación",
+    "playground": "Área de pruebas",
+    "publications": "Publicaciones",
+    "collaborations": "Colaboraciones",
+    "contact": "Contacto"
+  },
+
+  "auth": {
+    "signIn": "Iniciar sesión"
+  },
+
+  "documentation": {
+    "title": "Ejemplo de tipos de intersección dependientes",
+    "desc": "Los tipos de intersección dependientes pueden codificar datos expresivos como tipos inductivo-inductivos e inductivo-recursivos. Como ejemplo guía, consideremos los booleanos y la forma en que soportan if-then-else y la inducción.",
+    "inductive": "Tipo de dato Bool inductivo",
+    "1": "Comience con un tipo de dato ordinario de booleanos con dos constructores y la regla de eliminación habitual.",
+    "2": "Este tipo es inductivo en el sentido de que los únicos valores de Bool son True y False, lo que justifica una construcción if-then-else que solo necesita considerar estos dos casos.",
+    "church": "Codificación de Church de Bool",
+    "3": "En el cálculo lambda no tipado, un booleano es una función que selecciona uno de dos argumentos, correspondientes a las dos ramas de una expresión if-then-else.",
+    "4": "En System F, este comportamiento se captura mediante la codificación polimórfica Bool = ∀R. R → R → R, que generaliza el tipo de resultado de las ramas.",
+    "induction": "Principio de inducción",
+    "5": "El principio de inducción usual para los booleanos establece que, para demostrar una propiedad P : Bool → Type para todos los booleanos, basta con demostrarla para true y false.",
+    "6": "El cálculo de construcciones no puede definir tal función únicamente a partir de la codificación polimórfica Bool = forall R. R → R → R, por lo que se necesita algo adicional.",
+    "dependent": "Intersecciones dependientes para Bool",
+    "7": "Se puede definir un predicado BoolIsInd : Bool → Type que establece que un booleano dado b satisface el principio de inducción: siempre que una propiedad sea válida para true y false, también lo es para b.",
+    "8": "Los valores específicos true y false pueden demostrarse que satisfacen BoolIsInd utilizando programas simples que eligen la prueba adecuada.",
+    "9": "Un tipo booleano refinado puede definirse entonces como una intersección dependiente de un booleano de Church y una prueba de que satisface el principio de inducción.",
+    "takeaways": "Conclusiones",
+    "takeaways1": "El tipo subyacente Bool describe la interfaz computacional de los booleanos (cómo seleccionan las ramas).",
+    "takeaways2": "La propiedad BoolIsInd refina los booleanos con una especificación inductiva, garantizando que las pruebas por análisis de casos sean válidas.",
+    "takeaways3": "Los tipos de intersección dependientes empaquetan un valor con dicha propiedad, permitiendo que el mismo código cumpla roles tanto computacionales como de prueba."
+  },
+
+  "playground": {
+    "title": "Área de pruebas",
+    "message": "Selecciona un ejemplo o escribe tu propio término lambda, luego ejecútalo o visualiza su tipo",
+    "example": "Seleccionar un ejemplo de código",
+    "box": "Elige un ejemplo de código",
+    "run": "Ejecutar código",
+    "view": "Ver prueba",
+    "output": "Salida / Prueba",
+    "box2": "Esperando la acción del usuario."
+  },
+
+  "publications": {
+    "title": "Publicaciones relacionadas",
+    "classic": "Trabajos clásicos",
+    "research": "Investigaciones recientes (API de Semantic Scholar)",
+    "topic": "Tema de búsqueda",
+    "message": "p. ej., tipos de intersección, tipos dependientes",
+    "loading": "Cargando resultados...",
+    "error": "No se encontraron resultados."
+  },
+
+  "collaboration": {
+    "collaborationLabel": "Colaboradores"
+  },
+
+  "contact": {
+    "contactTitle": "Contáctanos",
+    "desc": "¿Tienes una pregunta o quieres colaborar? Envíanos un mensaje y nos pondremos en contacto contigo.",
+    "name": "Nombre",
+    "box1": "Tu nombre completo",
+    "email": "Correo electrónico",
+    "box2": "tu@ejemplo.com",
+    "message": "Mensaje",
+    "box3": "Escribe tu mensaje aquí…",
+    "sending": "Enviando...",
+    "sendMessage": "Enviar mensaje",
+    "failure": "Algo salió mal. Por favor, inténtalo de nuevo.",
+    "success": "¡Mensaje enviado con éxito!"
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "home": {
+    "overviewLabel": "Overview",
+    "heroSubtitle": ": Intersection + Dependent Types!",
+    "intro": {
+      "beforePiforall": "is an extension to the educational language",
+      "afterPiforall": ", which adds support for intersection data types. Pint allows us to encode expressive types like inductive-inductive and inductive-recursive types. Building on traditional Sigma types, this extension makes Piforall more expressive while also ultimately building a formally verified compiler."
+    },
+    "description": {
+      "body1": " builds upon ",
+      "body2": ", a simple, minimalistic, bidirectional type checker for dependent types written in Haskell, and extends it with ",
+      "body3": " types and their dual, ",
+      "body4": " types, to encode user-defined types and support advanced reasoning principles like inductive-induction while maintaining a small kernel. These extensions include intersections, unions, and first-class functions to model object-oriented systems and codata type interfaces, where intersections capture multiple interfaces (A and B) and unions capture variant or dynamic interfaces (A or B), which are particularly useful for modeling dynamic object-oriented behavior. The system also features coercions represented as explicit term annotations, enabling verified reasoning about type conversions, and uses subtyping both to model inheritance and to express a notion of type equality, where mutual subtyping yields type equivalence.",
+      "body5": " further incorporates impredicative quantifiers (forall and exists) in the style of System F to generalize dependent function and pair types, ensuring that logical abstractions and data constructors coexist within the same kernel. It includes universes from the Cedille type theory, with Prop for “small” impredicative types and Type for “large” types analogous to sets, and uses quantities to capture the essence of type erasure required for intersection and union types, clarify the compile-time versus run-time distinction, and express linear, stateful resources in imperative programs. The main innovation is to represent intersection and union types via a computationally irrelevant path parameter, similar in spirit to cubical type theory, and all these extensions live in a single calculus with an intrinsic, syntax-directed, bidirectional type theory so that every feature reuses the same small, trusted kernel rather than enlarging it."
+    },
+    "contributions": {
+      "title": "Contributions",
+      "bullet1": "Can generalize and encode ",
+      "bullet2": "Erasure and then check for program rquivalence, which is easy to implement in implicit systems vs. index erasure.",
+      "bullet3": "Typing rules.",
+      "bullet4": "Forall.",
+      "bullet5": "Lack of erasure in typing rules makes it easy to implement.",
+      "bullet6": "Small kernel size without trading off expressivity.",
+      "bullet7": "Formally verified core via Coq translation."
+    },
+    "interpreter": {
+      "title": "Interpreter",
+      "body": "We extend the Piforall implementation with intersection types by modifying its type checker and inference rules to handle type intersections during unification and evaluation. This involves extending the core type representation and adjusting the elaboration phase to preserve intersection structure in the generated core terms, ensuring that type soundness and normalization are maintained."
+    },
+    "source": {
+      "title": "Source Code",
+      "body": {
+        "beforeGithub": "Our source code and our proofs are publicly available on",
+        "afterGithub": ". Feel free to explore, contribute, or raise issues if you have any questions or suggestions!"
+      },
+      "githubAriaLabel": "Pi-forall GitHub"
+    }
+  },
+
+  "nav": {
+    "overview": "Overview",
+    "documentation": "Documentation",
+    "playground": "Playground",
+    "publications": "Publications",
+    "collaborations": "Collaborations",
+    "contact": "Contact"
+  },
+
+  "auth": {
+    "signIn": "Sign in"
+  },
+  
+  "documentation": {
+    "title": "Example of Dependent Intersection Types",
+    "desc": "Dependent intersection types can encode expressive data such as inductive-inductive and inductive-recursive types. As a running example, consider booleans and the way they support if-then-else and induction.",
+    "inductive": "Inductive Bool datatype",
+    "1": "Start with an ordinary datatype of booleans with two constructors and the usual elimination rule.",
+    "2": "This type is inductive in the sense that the only values of Bool are True and False, which justifies an if-then-else construct that only needs to consider these two cases.",
+    "church": "Church encoding of Bool",
+    "3": "In the untyped λ-calculus, a boolean is a function that selects one of two arguments, corresponding to the two branches of an if-then-else expression.",
+    "4": "In System F, this behavior is captured by the polymorphic encoding Bool = ∀R. R → R → R, which generalizes over the result type of the branches.",
+    "induction": "Induction principle",
+    "5": "The usual induction principle for booleans says that to show a property P : Bool → Type for all booleans, it suffices to show it for true and false.",
+    "6": "The calculus of constructions cannot define such a function solely from the polymorphic encoding Bool = forall R. R → R → R, so something additional is needed.",
+    "dependent": "Dependent intersections for Bool",
+    "7": "One can define a predicate BoolIsInd : Bool → Type that states that a given boolean b satisfies the induction principle: whenever a property holds for true and false, it also holds for b.",
+    "8": "The specific values true and false can be shown to satisfy BoolIsInd using simple programs that choose the appropriate proof.",
+    "9": "A refined boolean type can then be defined as a dependent intersection of a Church boolean and a proof that it satisfies the induction principle.",
+    "takeaways": "Takeaways",
+    "takeaways1": "The underlying type Bool describes the computational interface of booleans (how they select branches).",
+    "takeaways2": "The property BoolIsInd refines booleans with an inductive specification, ensuring that proofs by case analysis are valid.",
+    "takeaways3": "Dependent intersection types package a value with such a property, letting the same code serve both computation and proof roles."
+  },
+
+  "playground": {
+    "title": "Playground",
+    "message": "Select an example or write your own lambda term, then run or view its type",
+    "example": "Select a code example",
+    "box": "Choose a code example",
+    "run": "Run Code",
+    "view": "View Proof",
+    "output": "Output / Proof",
+    "box2": "Waiting for user's action."
+  },
+
+  "publications": {
+    "title": "Related Publications",
+    "classic": "Classic Works",
+    "research": "Recent Research (Semantic Scholar API)",
+    "topic": "Search Topic",
+    "message": "e.g. intersection types, dependent types",
+    "loading": "Loading results...",
+    "error": "No results found."
+  },
+
+  "collaboration": {
+    "collaborationLabel": "Collaborators"
+  },
+
+  "contact": {
+    "contactTitle": "Contact Us",
+    "desc": "Have a question or want to collaborate? Send us a message and we'll get back to you.",
+    "name": "Name",
+    "box1": "Your full name",
+    "email": "Email",
+    "box2": "you@example.com",
+    "message": "Message",
+    "box3": "Write your message here...",
+    "sending": "Sending...",
+    "sendMessage": "Send Message",
+    "failure": "Something went wrong. Please try again.",
+    "success": "Message successfully sent!"
+  }
+}

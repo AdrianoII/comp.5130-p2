@@ -24,23 +24,26 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { useState } from "react";
+import { LanguageSwitcher } from "./languageswitcher";
+import { useTranslation } from "react-i18next";
 
 const { useSession } = createAuthClient();
 
 const items = [
-  { href: "/", label: "Overview" },
-  { href: "/documentation", label: "Documentation" },
-  { href: "/playground", label: "Playground" },
-  { href: "/publications", label: "Publications" },
-  { href: "/collaborators", label: "Collaborators" },
-  { href: "/contact", label: "Contact" },
-];
+    { href: "/", key: "nav.overview" },
+    { href: "/documentation", key: "Documentation" },
+    { href: "/playground", key: "Playground" },
+    { href: "/publications", key: "Publications" },
+    { href: "/collaborators", key: "Collaborators" },
+    { href: "/contact", key: "Contact" },
+  ];
 
 export default function Topbar() {
   const router = useRouter();
   const pathname = usePathname();
   const { data: session } = useSession();
   const [open, setOpen] = useState(false);
+  const { t } = useTranslation("common");
 
   return (
     <header className="sticky top-0 flex h-16 items-center justify-between gap-4 border-b bg-white px-4 sm:px-6 z-10">
@@ -113,7 +116,7 @@ export default function Topbar() {
                               : "bg-gray-300 group-hover:bg-amber-600"
                           )}
                         />
-                        {item.label}
+                        {t(item.key)}
                       </Link>
                     </Button>
                   );
@@ -141,7 +144,7 @@ export default function Topbar() {
             className="gap-2 bg-amber-400 hover:bg-amber-400 text-amber-900"
           >
             <LogIn className="h-5 w-5" aria-hidden="true" focusable="false" />
-            <span className="hidden sm:inline">Sign in</span>
+            <span className="hidden sm:inline">{t("auth.signIn")}</span>
           </Button>
         )}
 

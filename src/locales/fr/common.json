@@ -1,0 +1,114 @@
+{
+  "home": {
+    "overviewLabel": "Aperçu",
+    "heroSubtitle": " : Types d’intersection et types dépendants !",
+    "intro": {
+      "beforePiforall": "est une extension du langage éducatif",
+      "afterPiforall": ", qui ajoute la prise en charge des types de données par intersection. Pint permet d’encoder des types expressifs tels que les types inductifs-inductifs et inductifs-récursifs. En s’appuyant sur les types Sigma traditionnels, cette extension rend Piforall plus expressif tout en visant, à terme, la construction d’un compilateur formellement vérifié."
+    },
+    "description": {
+      "body1": " s’appuie sur ",
+      "body2": ", un vérificateur de types bidirectionnel simple et minimaliste pour les types dépendants, écrit en Haskell, et l’étend avec des types ",
+      "body3": " et leurs duaux, les types ",
+      "body4": ", afin d’encoder des types définis par l’utilisateur et de prendre en charge des principes de raisonnement avancés tels que l’induction-induction, tout en conservant un noyau réduit. Ces extensions incluent les intersections, les unions et les fonctions de première classe pour modéliser des systèmes orientés objet et des interfaces de types codata, où les intersections capturent plusieurs interfaces (A et B) et les unions capturent des interfaces variantes ou dynamiques (A ou B), particulièrement utiles pour modéliser un comportement orienté objet dynamique. Le système inclut également des coercions représentées sous forme d’annotations explicites de termes, permettant un raisonnement vérifié sur les conversions de types, et utilise le sous-typage à la fois pour modéliser l’héritage et pour exprimer une notion d’égalité de types, où un sous-typage mutuel implique une équivalence de types.",
+      "body5": " intègre en outre des quantificateurs imprédicatifs (forall et exists) dans le style de System F afin de généraliser les types de fonctions et de paires dépendantes, garantissant que les abstractions logiques et les constructeurs de données coexistent au sein d’un même noyau. Il inclut des univers issus de la théorie des types de Cedille, avec Prop pour les types imprédicatifs « petits » et Type pour les types « grands » analogues aux ensembles, et utilise des quantités pour capturer l’essence de l’effacement de types requis pour les types d’intersection et d’union, clarifier la distinction entre le temps de compilation et le temps d’exécution, et exprimer des ressources linéaires et à état dans les programmes impératifs. L’innovation principale consiste à représenter les types d’intersection et d’union au moyen d’un paramètre de chemin computationnellement non pertinent, proche dans l’esprit de la théorie des types cubiques, et toutes ces extensions résident dans un calcul unique doté d’une théorie des types bidirectionnelle intrinsèque et dirigée par la syntaxe, de sorte que chaque fonctionnalité réutilise le même petit noyau de confiance au lieu de l’agrandir."
+    },
+    "contributions": {
+      "title": "Contributions",
+      "bullet1": "Peut généraliser et encoder ",
+      "bullet2": "Effacement puis vérification de l’équivalence des programmes, ce qui est facile à implémenter dans les systèmes implicites par rapport à l’effacement d’indices.",
+      "bullet3": "Règles de typage.",
+      "bullet4": "Forall.",
+      "bullet5": "L’absence d’effacement dans les règles de typage facilite l’implémentation.",
+      "bullet6": "Taille réduite du noyau sans compromis sur l’expressivité.",
+      "bullet7": "Noyau formellement vérifié via une traduction Coq."
+    },
+    "interpreter": {
+      "title": "Interpréteur",
+      "body": "Nous étendons l’implémentation de Piforall avec des types d’intersection en modifiant son vérificateur de types et ses règles d’inférence afin de gérer les intersections de types lors de l’unification et de l’évaluation. Cela implique d’étendre la représentation centrale des types et d’ajuster la phase d’élaboration pour préserver la structure des intersections dans les termes centraux générés, garantissant ainsi la sûreté des types et la normalisation."
+    },
+    "source": {
+      "title": "Code source",
+      "body": {
+        "beforeGithub": "Notre code source et nos preuves sont disponibles publiquement sur",
+        "afterGithub": ". N’hésitez pas à explorer, contribuer ou signaler des problèmes si vous avez des questions ou des suggestions !"
+      },
+      "githubAriaLabel": "GitHub de Pi-forall"
+    }
+  },
+
+  "nav": {
+    "overview": "Aperçu",
+    "documentation": "Documentation",
+    "playground": "Bac à sable",
+    "publications": "Publications",
+    "collaborations": "Collaborations",
+    "contact": "Contact"
+  },
+
+  "auth": {
+    "signIn": "Se connecter"
+  },
+
+  "documentation": {
+    "title": "Exemple de types d’intersection dépendants",
+    "desc": "Les types d’intersection dépendants permettent d’encoder des données expressives telles que les types inductifs-inductifs et inductifs-récursifs. Comme exemple fil conducteur, considérons les booléens et la manière dont ils prennent en charge if-then-else et l’induction.",
+    "inductive": "Type de données Bool inductif",
+    "1": "Commencez par un type de données ordinaire pour les booléens avec deux constructeurs et la règle d’élimination habituelle.",
+    "2": "Ce type est inductif en ce sens que les seules valeurs de Bool sont True et False, ce qui justifie une construction if-then-else qui ne nécessite de considérer que ces deux cas.",
+    "church": "Encodage de Church de Bool",
+    "3": "Dans le λ-calcul non typé, un booléen est une fonction qui sélectionne l’un de deux arguments, correspondant aux deux branches d’une expression if-then-else.",
+    "4": "Dans System F, ce comportement est capturé par l’encodage polymorphe Bool = ∀R. R → R → R, qui généralise le type de résultat des branches.",
+    "induction": "Principe d’induction",
+    "5": "Le principe d’induction habituel pour les booléens affirme que pour démontrer une propriété P : Bool → Type pour tous les booléens, il suffit de la démontrer pour true et false.",
+    "6": "Le calcul des constructions ne peut pas définir une telle fonction uniquement à partir de l’encodage polymorphe Bool = forall R. R → R → R ; quelque chose de supplémentaire est donc nécessaire.",
+    "dependent": "Intersections dépendantes pour Bool",
+    "7": "On peut définir un prédicat BoolIsInd : Bool → Type qui affirme qu’un booléen donné b satisfait le principe d’induction : chaque fois qu’une propriété est vraie pour true et false, elle l’est aussi pour b.",
+    "8": "Les valeurs spécifiques true et false peuvent être montrées comme satisfaisant BoolIsInd à l’aide de programmes simples qui choisissent la preuve appropriée.",
+    "9": "Un type booléen raffiné peut alors être défini comme une intersection dépendante d’un booléen de Church et d’une preuve qu’il satisfait le principe d’induction.",
+    "takeaways": "À retenir",
+    "takeaways1": "Le type sous-jacent Bool décrit l’interface computationnelle des booléens (la manière dont ils sélectionnent les branches).",
+    "takeaways2": "La propriété BoolIsInd raffine les booléens avec une spécification inductive, garantissant que les preuves par analyse de cas sont valides.",
+    "takeaways3": "Les types d’intersection dépendants associent une valeur à une telle propriété, permettant au même code de jouer à la fois un rôle computationnel et un rôle de preuve."
+  },
+
+  "playground": {
+    "title": "Bac à sable",
+    "message": "Sélectionnez un exemple ou écrivez votre propre terme lambda, puis exécutez-le ou affichez son type",
+    "example": "Sélectionner un exemple de code",
+    "box": "Choisissez un exemple de code",
+    "run": "Exécuter le code",
+    "view": "Voir la preuve",
+    "output": "Sortie / Preuve",
+    "box2": "En attente de l’action de l’utilisateur."
+  },
+
+  "publications": {
+    "title": "Publications associées",
+    "classic": "Travaux classiques",
+    "research": "Recherches récentes (API Semantic Scholar)",
+    "topic": "Sujet de recherche",
+    "message": "ex. types d’intersection, types dépendants",
+    "loading": "Chargement des résultats…",
+    "error": "Aucun résultat trouvé."
+  },
+
+  "collaboration": {
+    "collaborationLabel": "Collaborateurs"
+  },
+
+  "contact": {
+    "contactTitle": "Nous contacter",
+    "desc": "Vous avez une question ou souhaitez collaborer ? Envoyez-nous un message et nous vous répondrons.",
+    "name": "Nom",
+    "box1": "Votre nom complet",
+    "email": "Adresse e-mail",
+    "box2": "vous@exemple.com",
+    "message": "Message",
+    "box3": "Écrivez votre message ici…",
+    "sending": "Envoi en cours…",
+    "sendMessage": "Envoyer le message",
+    "failure": "Une erreur s’est produite. Veuillez réessayer.",
+    "success": "Message envoyé avec succès !"
+  }
+}

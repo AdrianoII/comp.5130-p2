@@ -1,5 +1,8 @@
 "use client";
 
+import { usePathname } from "next/navigation";
+import { LanguageSwitcher } from "@/components/shared/languageswitcher";
+import { useTranslation } from "react-i18next";
 import Editor, { Monaco } from "@monaco-editor/react";
 import { PlayIcon, ScrollIcon, HelpCircleIcon } from "lucide-react";
 import { useState, useRef } from "react";
@@ -11,6 +14,8 @@ import ExampleSelector from "@/components/shared/exampleselector";
 import { editor } from "monaco-editor";
 
 export default function Playground() {
+  const pathname = usePathname();
+  const { t } = useTranslation("common");
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
@@ -54,7 +59,7 @@ export default function Playground() {
     <section className="flex-1 w-full px-4 sm:px-6 lg:px-8 py-6 space-y-6">
       {/* Main heading */}
       <header className="space-y-2 text-center flex items-center justify-center relative">
-        <h1 className="text-2xl sm:text-3xl font-semibold">Playground</h1>
+        <h1 className="text-2xl sm:text-3xl font-semibold">{t("playground.title")}</h1>
         <Button
           variant="ghost"
           size="icon-lg"
@@ -66,11 +71,11 @@ export default function Playground() {
         </Button>
       </header>
         <p className="text-sm text-gray-600">
-          Select an example or write your own lambda term, then run or view its type.
+          {t("playground.message")}
         </p>
       {/* Example selector */}
       <div className="flex flex-col items-center text-center space-y-3">
-        <h2 className="text-lg font-semibold">Select a code example</h2>
+        <h2 className="text-lg font-semibold">{t("playground.example")}</h2>
         <div className="w-full max-w-md flex justify-center">
           <ExampleSelector
             onChange={(v: string) => {
@@ -106,7 +111,7 @@ export default function Playground() {
           onClick={() => runCode("eval")}
         >
           <PlayIcon className="h-5 w-5" aria-hidden="true" focusable="false" />
-          Run Code
+          {t("playground.run")}
         </Button>
 
         <Button
@@ -119,14 +124,14 @@ export default function Playground() {
             aria-hidden="true"
             focusable="false"
           />
-          View Proof
+          {t("playground.view")}
         </Button>
       </div>
 
       {/* Output */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">Output / Proof</CardTitle>
+          <CardTitle className="text-base">{t("playground.output")}</CardTitle>
         </CardHeader>
         <CardContent className="text-sm text-gray-700">
           <div aria-live="polite" aria-atomic="true">
@@ -137,7 +142,7 @@ export default function Playground() {
             )}
 
             {error.length === 0 && output.length === 0 && (
-              <p>Waiting for user&apos;s action</p>
+              <p>{t("playground.box2")}</p>
             )}
 
             {error.length === 0 && output.length > 0 && (

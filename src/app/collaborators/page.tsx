@@ -1,4 +1,10 @@
 // app/documentation/page.tsx
+
+"use client";
+
+import { usePathname } from "next/navigation";
+import { LanguageSwitcher } from "@/components/shared/languageswitcher";
+import { useTranslation } from "react-i18next";
 import { CollaboratorCard } from "@/components/shared/collaboratorcard";
 
 const people = [
@@ -25,9 +31,12 @@ const people = [
 
 
 export default function Collaborator() {
+  const pathname = usePathname();
+  const { t } = useTranslation("common");
+
   return (
     <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-6" aria-labelledby="collaborators-heading">
-      <p className="text-xs uppercase tracking-wider text-gray-500">Collaborators</p>
+      <p className="text-xs uppercase tracking-wider text-gray-500">{t("collaboration.collaborationLabel")}</p>
 
       {/* <h1
         id="collaborators-heading"
