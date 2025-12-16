@@ -1,29 +1,30 @@
 "use client";
 
+import { usePathname } from "next/navigation";
+import { LanguageSwitcher } from "@/components/shared/languageswitcher";
+import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
 export default function Documentation() {
+  const pathname = usePathname();
+  const { t } = useTranslation("common");
   return (<main className="prose-math">
     <Card>
       <CardHeader>
         <CardTitle className="text-2xl font-semibold">
-          Example of Dependent Intersection Types
+          {t("documentation.title")}
         </CardTitle>
       </CardHeader>
       <Separator />
       <CardContent className="pt-6 space-y-4">
         <p>
-          Dependent intersection types can encode expressive data such as
-          inductive-inductive and inductive-recursive types. As a running
-          example, consider booleans and the way they support if-then-else
-          and induction.
+          {t("documentation.desc")}
         </p>
 
-        <h2 className="text-xl font-semibold">Inductive Bool datatype</h2>
+        <h2 className="text-xl font-semibold">{t("documentation.inductive")}</h2>
         <p>
-          Start with an ordinary datatype of booleans with two constructors
-          and the usual elimination rule.
+          {t("documentation.1")}
         </p>
 
         <pre className="rounded bg-muted p-3 text-sm overflow-x-auto">
@@ -31,9 +32,7 @@ export default function Documentation() {
         </pre>
 
         <p>
-          This type is inductive in the sense that the only values of Bool
-          are True and False, which justifies an if-then-else construct that
-          only needs to consider these two cases.
+          {t("documentation.2")}
         </p>
 
         <pre className="rounded bg-muted p-3 text-sm overflow-x-auto">
@@ -41,11 +40,9 @@ export default function Documentation() {
 if False then M else N = N`}</code>
         </pre>
 
-        <h2 className="text-xl font-semibold">Church encoding of Bool</h2>
+        <h2 className="text-xl font-semibold">{t("documentation.church")}</h2>
         <p>
-          In the untyped λ-calculus, a boolean is a function that selects one
-          of two arguments, corresponding to the two branches of an
-          if-then-else expression.
+          {t("documentation.3")}
         </p>
 
         <pre className="rounded bg-muted p-3 text-sm overflow-x-auto">
@@ -54,9 +51,7 @@ false x y = y`}</code>
         </pre>
 
         <p>
-          In System F, this behavior is captured by the polymorphic encoding
-          Bool = ∀R. R → R → R, which generalizes over the result type of the
-          branches.
+          {t("documentation.4")}
         </p>
 
         <pre className="rounded bg-muted p-3 text-sm overflow-x-auto">
@@ -66,11 +61,9 @@ true  : Bool
 false : Bool`}</code>
         </pre>
 
-        <h2 className="text-xl font-semibold">Induction principle</h2>
+        <h2 className="text-xl font-semibold">{t("documentation.induction")}</h2>
         <p>
-          The usual induction principle for booleans says that to show a
-          property P : Bool → Type for all booleans, it suffices to show it
-          for true and false.
+          {t("documentation.5")}
         </p>
 
         <pre className="rounded bg-muted p-3 text-sm overflow-x-auto">
@@ -81,18 +74,14 @@ false : Bool`}</code>
         </pre>
 
         <p>
-          The calculus of constructions cannot define such a function solely
-          from the polymorphic encoding Bool = forall R. R -&gt; R -&gt; R,
-          so something additional is needed.
+          {t("documentation.6")}
         </p>
 
         <h2 className="text-xl font-semibold">
-          Dependent intersections for Bool
+          {t("documentation.dependent")}
         </h2>
         <p>
-          One can define a predicate BoolIsInd : Bool → Type that states
-          that a given boolean b satisfies the induction principle: whenever
-          a property holds for true and false, it also holds for b.
+          {t("documentation.7")}
         </p>
 
         <pre className="rounded bg-muted p-3 text-sm overflow-x-auto">
@@ -103,8 +92,7 @@ BoolIsInd b =
         </pre>
 
         <p>
-          The specific values true and false can be shown to satisfy
-          BoolIsInd using simple programs that choose the appropriate proof.
+          {t("documentation.8")}
         </p>
 
         <pre className="rounded bg-muted p-3 text-sm overflow-x-auto">
@@ -116,9 +104,7 @@ falseIsInd p_true p_false = p_false`}</code>
         </pre>
 
         <p>
-          A refined boolean type can then be defined as a dependent
-          intersection of a Church boolean and a proof that it satisfies the
-          induction principle.
+          {t("documentation.9")}
         </p>
 
         <pre className="rounded bg-muted p-3 text-sm overflow-x-auto">
@@ -128,20 +114,16 @@ falseIsInd p_true p_false = p_false`}</code>
 [false, falseIsInd] : BoolI`}</code>
         </pre>
 
-        <h2 className="text-xl font-semibold">Takeaways</h2>
+        <h2 className="text-xl font-semibold">{t("documentation.takeaways")}</h2>
         <ul className="list-disc pl-6 space-y-1">
           <li>
-            The underlying type Bool describes the computational interface of
-            booleans (how they select branches).
+            {t("documentation.takeaways1")}
           </li>
           <li>
-            The property BoolIsInd refines booleans with an inductive
-            specification, ensuring that proofs by case analysis are valid.
+            {t("documentation.takeaways2")}
           </li>
           <li>
-            Dependent intersection types package a value with such a
-            property, letting the same code serve both computation and proof
-            roles.
+            {t("documentation.takeaways3")}
           </li>
         </ul>
       </CardContent>

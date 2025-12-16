@@ -144,7 +144,7 @@ export default function Topbar() {
             className="gap-2 bg-amber-400 hover:bg-amber-400 text-amber-900"
           >
             <LogIn className="h-5 w-5" aria-hidden="true" focusable="false" />
-            <span className="hidden sm:inline">t{("login: sign")}</span>
+            <span className="hidden sm:inline">{t("auth.signIn")}</span>
           </Button>
         )}
 

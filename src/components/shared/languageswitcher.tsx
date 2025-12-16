@@ -13,8 +13,11 @@ export function LanguageSwitcher() {
   const { i18n, t } = useTranslation("common");
 
   const languages = [
+    { code: "es", label: "Español" },
     { code: "en", label: "English" },
-    { code: "fr", label: "French" },
+    { code: "fr", label: "Français" },
+    { code: "ja", label: "日本語" },
+    { code: "ko", label: "한국어" },
   ];
   const current = i18n.language.split("-")[0];
 

@@ -1,5 +1,8 @@
 "use client";
 
+import { usePathname } from "next/navigation";
+import { LanguageSwitcher } from "@/components/shared/languageswitcher";
+import { useTranslation } from "react-i18next";
 import { useState, useEffect } from "react";
 import {
   Select,
@@ -22,6 +25,8 @@ interface Example {
 
 
 export default function ExampleSelector({ onChange }: { onChange: (v: string) => void }) {
+  const pathname = usePathname();
+  const { t } = useTranslation("common");
   const [examples, setExamples] = useState([] as unknown as [Example]);
   const [selectedExample, setSelectedExample] = useState("");
   useEffect(() => {
@@ -46,7 +51,7 @@ export default function ExampleSelector({ onChange }: { onChange: (v: string) =>
         setSelectedExample(v);
       }}>
         <SelectTrigger className="w-full">
-          <SelectValue placeholder="Choose a code example" />
+          <SelectValue placeholder={t("playground.box")} />
         </SelectTrigger>
 
         <SelectContent>

@@ -1,5 +1,8 @@
 "use client";
 
+import { usePathname } from "next/navigation";
+import { LanguageSwitcher } from "@/components/shared/languageswitcher";
+import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
@@ -197,6 +200,8 @@ export interface ScholarPaper {
 export type ScholarSearchResults = ScholarPaper[];
 
 export default function PublicationsPage() {
+  const pathname = usePathname();
+  const { t } = useTranslation("common");
   const [query, setQuery] = useState("intersection types, dependent types");
   const [papers, setPapers] = useState<ScholarSearchResults>([]);
   const [loading, setLoading] = useState(false);
@@ -233,11 +238,11 @@ export default function PublicationsPage() {
 
   return (
     <section className="mx-auto max-w-5xl p-6 space-y-6">
-      <h1 className="text-2xl font-semibold">Related Publications</h1>
+      <h1 className="text-2xl font-semibold">{t("publications.title")}</h1>
 
       {/* --- static list --- */}
       <div>
-        <h2 className="text-lg font-medium mb-2">Classic Works</h2>
+        <h2 className="text-lg font-medium mb-2">{t("publications.classic")}</h2>
         <ol className="space-y-4">
           {publications.map((pub, index) => (
             <li key={pub.link}>
@@ -262,7 +267,7 @@ export default function PublicationsPage() {
       {/* --- dynamic list --- */}
       <div className="mt-6">
         <h2 className="text-lg font-medium mb-2">
-          Recent Research (via Semantic Scholar)
+          {t("publications.research")}
         </h2>
 
         {/* Accessible label for search input */}
@@ -271,23 +276,23 @@ export default function PublicationsPage() {
             htmlFor="publication-search"
             className="block text-sm font-medium text-gray-700 mb-1"
           >
-            Search topic
+            {t("publications.topic")}
           </label>
           <input
             id="publication-search"
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="e.g. intersection types, dependent types"
+            placeholder={t("publications.message")}
             className="border border-gray-300 focus:border-amber-500 focus:ring-amber-500 rounded-md w-full px-3 py-2 text-sm md:text-base outline-none"
           />
         </div>
 
         <div aria-live="polite" aria-atomic="true" className="space-y-3">
           {loading && (
-            <div className="flex items-center gap-2" role="status" aria-label="Loading search results">
+            <div className="flex items-center gap-2" role="status" aria-label={t("publications.loading")}>
               <Spinner className="size-6 text-amber-500" />
-              <span className="text-sm text-gray-600">Loading results…</span>
+              <span className="text-sm text-gray-600">{t("publications.error")}</span>
             </div>
           )}
 
