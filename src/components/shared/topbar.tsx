@@ -207,6 +207,7 @@ export default function Topbar() {
             </DropdownMenuContent>
           </DropdownMenu>
         )}
+        <LanguageSwitcher />
       </div>
     </header>
   );

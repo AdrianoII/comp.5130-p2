@@ -82,9 +82,9 @@ export default function Sidebar() {
         })}
       </nav>
 
-      <div className="mt-auto mb-25 p-4">
+      {/* <div className="mt-auto mb-25 p-4">
         <LanguageSwitcher />
-      </div>
+      </div> */}
 
     </aside>
   );
