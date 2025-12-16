@@ -1,10 +1,11 @@
 "use client";
 
 import Editor, { Monaco } from "@monaco-editor/react";
-import { PlayIcon, ScrollIcon } from "lucide-react";
+import { PlayIcon, ScrollIcon, HelpCircleIcon } from "lucide-react";
 import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { WASI } from "@runno/wasi";
 import ExampleSelector from "@/components/shared/exampleselector";
 import { editor } from "monaco-editor";
@@ -14,6 +15,7 @@ export default function Playground() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [error, setError] = useState("");
+  const [isHelpOpen, setIsHelpOpen] = useState(false);
 
   function handleEditorDidMount(
     editorInstance: editor.IStandaloneCodeEditor,
@@ -51,13 +53,21 @@ export default function Playground() {
   return (
     <section className="flex-1 w-full px-4 sm:px-6 lg:px-8 py-6 space-y-6">
       {/* Main heading */}
-      <header className="space-y-2 text-center">
+      <header className="space-y-2 text-center flex items-center justify-center relative">
         <h1 className="text-2xl sm:text-3xl font-semibold">Playground</h1>
+        <Button
+          variant="ghost"
+          size="icon-lg"
+          className="rounded-full ml-2 text-amber-600"
+          onClick={() => setIsHelpOpen(true)}
+          aria-label="Help"
+        >
+          <HelpCircleIcon className="h-5 w-5" />
+        </Button>
+      </header>
         <p className="text-sm text-gray-600">
           Select an example or write your own lambda term, then run or view its type.
         </p>
-      </header>
-
       {/* Example selector */}
       <div className="flex flex-col items-center text-center space-y-3">
         <h2 className="text-lg font-semibold">Select a code example</h2>
@@ -136,6 +146,53 @@ export default function Playground() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Help Modal */}
+      <Sheet open={isHelpOpen} onOpenChange={setIsHelpOpen}>
+        <SheetContent  className="p-4" side="right">
+          <SheetHeader>
+            <SheetTitle>Playground Tutorial</SheetTitle>
+          </SheetHeader>
+          <div className="space-y-4 py-4 text-sm">
+            <div>
+              <h3 className="font-semibold mb-2">Getting Started</h3>
+              <p className="text-gray-700">
+                Welcome to the Pint Playground! You can write lambda expressions and execute them to see the results or check their types!
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold mb-2">Select Examples</h3>
+              <p className="text-gray-700">
+                Use the example selector to load pre-built programs curated by us and learn from them.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold mb-2">Manage Examples</h3>
+              <p className="text-gray-700">
+                You can use the topbar to authenticate and manage your own code examples. 
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold mb-2">Run Code</h3>
+              <p className="text-gray-700">
+                Click the &ldquo;Run Code&rdquo; button to evaluate your program and see the output.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold mb-2">View Proof</h3>
+              <p className="text-gray-700">
+                Click the &ldquo;View Proof&rdquo; button to see the type of your program.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold mb-2">Syntax</h3>
+              <p className="text-gray-700">
+                Use standard lambda calculus syntax. For detailed documentation, please refer to our documentation page.
+              </p>
+            </div>
+          </div>
+        </SheetContent>
+      </Sheet>
     </section>
   );
 }
