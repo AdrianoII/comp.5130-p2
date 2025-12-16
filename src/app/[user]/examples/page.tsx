@@ -25,6 +25,7 @@ export default function Page() {
     refetch
   } = useSession();
   const [examples, setExamples] = useState([]);
+  const [hasData, setHasData] = useState(false);
   const [selectedExample, setSelectedExample] = useState("");
   useEffect(() => {
     // TODO: Maybe we should add the API_URL as an env var 
@@ -33,14 +34,15 @@ export default function Page() {
         const data = await fetch(`${process.env.NEXT_PUBLIC_URL}api/examples/user`)
         const json = await data.json();
         setExamples(json);
+        setHasData(true);
       };
       const data = fetch_data();
     }
   }, [session]);
 
   return <section className="mx-auto max-w-5xl p-6 space-y-6">
-    {(isPending) && <p>Loading session... <Spinner className="size-6 text-amber-500" /></p>}
-    {!isPending && <>
+    {(isPending && !hasData) && <p>Loading session... <Spinner className="size-6 text-amber-500" /></p>}
+    {(!isPending && hasData) && <>
       <h1 className="text-2xl font-semibold">Examples of {session?.user.name}</h1>
       <ul>
         {examples.map((ex: Example) =>
