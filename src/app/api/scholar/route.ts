@@ -26,6 +26,7 @@ export async function GET(request: Request) {
             return NextResponse.json({ error: error }, { status: 500 });
         }
         console.error("Scholar API Error: Unknown error");
+        console.log(error);
         return NextResponse.json({ error: "Unknown error occurred" }, { status: 500 });
     }
 }
