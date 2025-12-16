@@ -15,7 +15,7 @@ export async function isAdmin(userId: string) {
         const sql = neon(process.env.DATABASE_URL as string);
         const rows = await sql`
             SELECT 1 FROM role
-            WHERE role = 'admin' AND user_id::text = ${userId}
+            WHERE role.role = 'admin' AND role."userId" = ${userId}
             LIMIT 1;
         `;
         return Array.isArray(rows) && rows.length > 0;

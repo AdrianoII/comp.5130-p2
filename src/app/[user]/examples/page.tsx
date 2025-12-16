@@ -18,6 +18,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetFooter } from "@/com
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { PlusIcon } from "lucide-react";
 
 export default function Page() {
   const params = useParams();
@@ -35,8 +36,10 @@ export default function Page() {
   const [editTitle, setEditTitle] = useState("");
   const [editCode, setEditCode] = useState("");
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
+  const [newTitle, setNewTitle] = useState("");
+  const [newCode, setNewCode] = useState("");
   useEffect(() => {
-    // TODO: Maybe we should add the API_URL as an env var 
     if (session !== null) {
       const fetch_data = async () => {
         const data = await fetch(`${process.env.NEXT_PUBLIC_URL}api/examples/user`)
@@ -71,15 +74,42 @@ export default function Page() {
       setExamples(Array.isArray(json) ? json : []);
       setIsEditOpen(false);
       setEditingExample(null);
+      window.location.reload();
     } catch (err) {
       console.error('Edit failed', err);
+    }
+  };
+
+  const handleCreateSave = async () => {
+    try {
+      const res = await fetch(`/api/examples/user`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          title: newTitle, 
+          code: newCode 
+        })
+      });
+      const json = await res.json();
+      setExamples(Array.isArray(json) ? json : []);
+      setIsCreateOpen(false);
+      setNewTitle("");
+      setNewCode("");
+      window.location.reload();
+    } catch (err) {
+      console.error('Create failed', err);
     }
   };
 
   return <section className="mx-auto max-w-5xl p-6 space-y-6">
     {(isPending && !hasData) && <p>Loading session... <Spinner className="size-6 text-amber-500" /></p>}
     {(!isPending && hasData) && <>
-      <h1 className="text-2xl font-semibold">Examples of {session?.user.name}</h1>
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-semibold">Examples of {session?.user.name}</h1>
+        <Button className="bg-green-500" onClick={() => setIsCreateOpen(true)} size="icon">
+          <PlusIcon className="size-5" />
+        </Button>
+      </div>
       <div className="overflow-x-auto">
         <table className="w-full table-auto border-collapse">
           <thead>
@@ -117,8 +147,8 @@ export default function Page() {
                           body: JSON.stringify({ id: ex.id })
                         });
                         const json = await res.json();
-                        // API returns updated list after mutations
                         setExamples(Array.isArray(json) ? json : []);
+                        window.location.reload();
                       } catch (err) {
                         console.error('Delete failed', err);
                       }
@@ -142,7 +172,7 @@ export default function Page() {
     }
 
     <Sheet open={isEditOpen} onOpenChange={setIsEditOpen}>
-      <SheetContent side="right">
+      <SheetContent className="p-3" side="right">
         <SheetHeader>
           <SheetTitle>Edit Example</SheetTitle>
         </SheetHeader>
@@ -170,6 +200,40 @@ export default function Page() {
           </Button>
           <Button onClick={handleEditSave}>
             Save
+          </Button>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
+
+    <Sheet open={isCreateOpen} onOpenChange={setIsCreateOpen}>
+      <SheetContent className="p-3" side="right">
+        <SheetHeader>
+          <SheetTitle>Create New Example</SheetTitle>
+        </SheetHeader>
+        <div className="space-y-4 py-4">
+          <div>
+            <label className="text-sm font-medium">Title</label>
+            <Input
+              value={newTitle}
+              onChange={(e) => setNewTitle(e.target.value)}
+              placeholder="Example title"
+            />
+          </div>
+          <div>
+            <label className="text-sm font-medium">Code</label>
+            <Textarea
+              value={newCode}
+              onChange={(e) => setNewCode(e.target.value)}
+              placeholder="Example code"
+            />
+          </div>
+        </div>
+        <SheetFooter>
+          <Button variant="outline" onClick={() => setIsCreateOpen(false)}>
+            Cancel
+          </Button>
+          <Button onClick={handleCreateSave}>
+            Create
           </Button>
         </SheetFooter>
       </SheetContent>
