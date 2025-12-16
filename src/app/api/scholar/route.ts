@@ -1,14 +1,16 @@
 import { NextResponse } from "next/server";
 
-const BASE_URL = "https://api.semanticscholar.org/graph/v1/paper/search";
+// const BASE_URL = "https://api.semanticscholar.org/graph/v1/paper/search";
+const BASE_URL = "https://api.semanticscholar.org/graph/v1/author/2065311/papers/?fields=title,authors,url,year,citationCount&limit=10&offset=0";
 
 export async function GET(request: Request) {
-    const { searchParams } = new URL(request.url);
-    const query = searchParams.get("q") || "machine learning";
-
+    // const { searchParams } = new URL(request.url);
+    // const query = searchParams.get("q") || "machine learning";
+    console.log("adasds")
     try {
         const res = await fetch(
-            `${BASE_URL}?query=${encodeURIComponent(query)}&limit=5&fields=title,authors,url,year,citationCount`
+            // `${BASE_URL}?query=${encodeURIComponent(query)}&limit=5&fields=title,authors,url,year,citationCount`
+            `${BASE_URL}`
         );
 
         if (!res.ok) {
@@ -16,6 +18,7 @@ export async function GET(request: Request) {
         }
 
         const data = await res.json();
+        console.log(data);
         return NextResponse.json(data.data);
     } catch (error: unknown) {
         if (error instanceof Error) {
