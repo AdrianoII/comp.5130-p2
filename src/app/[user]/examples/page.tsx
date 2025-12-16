@@ -13,6 +13,7 @@ interface Example {
   updated_at: string;
 }
 import { authClient } from "@/lib/auth-client";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function Page() {
   const params = useParams();
@@ -37,7 +38,24 @@ export default function Page() {
     }
   }, [session]);
 
-  return <div>
+  return <section className="mx-auto max-w-5xl p-6 space-y-6">
+    {(isPending) && <p>Loading session... <Spinner className="size-6 text-amber-500" /></p>}
+    {!isPending && <>
+      <h1 className="text-2xl font-semibold">Examples of {session?.user.name}</h1>
+      <ul>
+        {examples.map((ex: Example) =>
+          <li key={ex.id}>{ex.title}</li>
+        )}
+      </ul>
+    </>
+    }
+    {
+      error &&
+      <p className="text-red-600 text-sm md:text-base">
+        Invalid user. Please log in to view your examples.
+      </p>
+    }
+    {/* <div>
     <h1>{session?.user.name}</h1>
     <h1> Examples</h1>
     <ul>
@@ -45,5 +63,6 @@ export default function Page() {
         <li key={ex.id}>{ex.title}</li>
       )}
     </ul>
-  </div>
+  </div> */}
+  </section>
 }
