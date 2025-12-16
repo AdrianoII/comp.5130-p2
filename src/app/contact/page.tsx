@@ -46,7 +46,7 @@ export default function ContactPage() {
       Contact Us
     </h1>
     <p className="text-sm text-gray-600 mb-6">
-      Have a question or want to collaborate? Send us a message and we’ll
+      Have a question or want to collaborate? Send us a message and we will
       get back to you.
     </p>
 

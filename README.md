@@ -1,13 +1,15 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+All of our work was done under the class branch.
+
 ## Getting Started
 
 First, run the development server:
 
 ```bash
-npm run dev
-# or
 pnpm dev
+# or
+npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -33,3 +35,30 @@ We implemented user authentication using better auth. At the navbar, if the user
 For the external API, we were planning to use Google scholar to fetch paper metadata, however, google scholar doesn't provide a public API. Thus, we decided to use a third-party API called Semantic Scholar. This API allows us to fetch metadata for academic papers. We created an endpoint at `/api/scholar` that accepts a query parameter and returns a list of papers corresponding the metadata.
 We use this API at the publications page, where we generate a dynamic list of publications that were returned by the API.
 The API was not in the original plans of our client, so we are still discussing where and how to integrate its use.
+
+
+## Milestone 8: Final Product, Report, & Presentation
+
+We had a few detours, and we made a few changes to the original plan.
+
+We added a tutorial text to the playground page. This new text is under a help icon button at the top right of the code editor. This addition was made to improve user experience, as we felt that users might need some guidance on how to use the playground.
+
+Since we are using better-auth, we trimmed the fat from our schema and only use the better-auth keys as our keys. We have finished implementing our CRUD functionality for the examples. Now users can create, read, update, and delete their own code examples. This functionality is accessible through the "My Examples" page, which is available in the user dropdown menu in the navbar.
+
+We also implemented a role system. At the moment, we have two roles: admin and user. Admins have the ability to manage all examples in the system, while regular users can only manage their own examples.
+
+We use the role table in our database to check if a given user has the admin role or not.
+
+Regarding the external API integration, we kept the decision of using SemanticScholar. However, instead of providing a search input to search papers given a set of keywords, we changed to fetch the most recent papers of the collaborators who have entries in SemanticScholar. This change was made to better align with the client's needs, as they wanted to showcase their latest research work on the publications page.
+
+Therefore, our implementation is pretty lean, we just fetch the most recent papers of each collaborator and display them in a list format on the publications page, and gracefully handle any errors that may arise during the API calls. 
+
+Regarding our deployment, we are using Vercel to host our application. We adopt a serverless approach and do not use server components, and use Vercel functions to implement our backend functionalities.
+
+We are using Neon to host our PostgreSQL database.
+
+We are using Formspree to handle the contact form. Formspree allows us to add a level of indirection where we do not expose our email. Thus, we have a form, which, when submitted, sends the data to Formspree, which in turn sends the email to our actual email address.
+
+Regarding security, we are using GitHub's OAuth integration. This way, we do not handle passwords directly and delegate the authentication process to GitHub, which is a trusted third-party provider. This makes it easier for the user to create an account and more secure since there is less room for errors. However, our database is ready to handle hashed passwords, in case we want to implement more authentication methods in the future. 
+
+# JONATHAN REPLACE THIS WITH A PARAGRAPH ABOUT HOW THE I18N WORKS IN OUR PROJECT.
