@@ -61,4 +61,4 @@ We are using Formspree to handle the contact form. Formspree allows us to add a 
 
 Regarding security, we are using GitHub's OAuth integration. This way, we do not handle passwords directly and delegate the authentication process to GitHub, which is a trusted third-party provider. This makes it easier for the user to create an account and more secure since there is less room for errors. However, our database is ready to handle hashed passwords, in case we want to implement more authentication methods in the future. 
 
-# JONATHAN REPLACE THIS WITH A PARAGRAPH ABOUT HOW THE I18N WORKS IN OUR PROJECT.
+Internationalization was implemented by incorporating not only English, but Spanish, French, Japanese, and Korean. Every page is successfully translated into each native language with a button toggle at the bottom left corner of the website offering five different languages. There is a dictionary located in the locales folder each holding it's own JSON file and it's corresponding language that i18n uses so that it uses keys and tokens to place each of them inside the sections of the website on every page.
